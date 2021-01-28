@@ -1,0 +1,123 @@
+////////////////////////////////////
+//Verification module
+//That stuff happens here
+////////////////////////////////////
+module.exports = {
+  eventTrigger: async function (client, CONFIG, npm, mmbr, msg, snd, gld) {
+    //If the current channel is the verification channel
+    if (msg.content.toLowerCase() == "hello artemis") {
+      //If message is hello artemis
+      let veriMute = await getScore.get(msg.author.id, msg.guild_id); //get user info to check for mute
+      let veriCall = await getGuild.get(msg.guild_id); //Getting the verification channel
+      if (veriMute) {
+        if (veriMute.muted == "1")
+          return await snd.send(
+            "Seems like you may not get yourself verified, since you appear to be muted."
+          ); //User has been muted and somehow got into this channel
+      }
+
+      await snd.send(`${mmbr}, You have been granted access!`);
+
+      try {
+        await mmbr.roles.add(
+          await snd.guild.roles.cache.find(
+            (r) => r.id === getSettings.get(msg.guild_id).defaultrole
+          )
+        );
+      } catch (err) {
+        console.log("");
+      }
+
+      try {
+        let veriChan = await gld.channels.cache.find(
+          (channel) => channel.id === getGuild.get(gld.id).verificationChannel
+        );
+        if (await veriChan.permissionOverwrites.get(mmbr.user.id)) {
+          await veriChan.permissionOverwrites.get(mmbr.user.id).delete();
+        }
+      } catch (err) {
+        console.log("");
+      }
+
+      await snd.messages.fetch().then((messages) => {
+        let cleanUp = messages.filter(
+          (msg) =>
+            msg.author.id == mmbr.user.id ||
+            msg.content.toLowerCase().includes(`<@${mmbr.user.id}>`)
+        );
+        cleanUp.forEach(async (m) => {
+          try {
+            await m.delete();
+          } catch (err) {
+            console.log("");
+          }
+        });
+      });
+
+      let a = moment();
+      let b = moment(mmbr.user.createdTimestamp);
+
+      let years = a.diff(b, "year");
+      b.add(years, "years");
+
+      let months = a.diff(b, "months");
+      b.add(months, "months");
+
+      let days = a.diff(b, "days");
+
+      let embed = new Discord.MessageEmbed()
+        .setThumbnail(
+          mmbr.user.displayAvatarURL({
+            format: "png",
+            dynamic: true,
+            size: 1024,
+          })
+        )
+        .setColor("LUMINOUS_VIVID_PINK")
+        .addField(
+          "Member:",
+          `${mmbr.user.username}#${mmbr.user.discriminator}`,
+          true
+        )
+        .addField("ID:", `${mmbr.user.id}`, true)
+        .addField(
+          "Account age:",
+          `${years} Years  ${months} Months ${days} Days`
+        );
+
+      let artIMG = await getSettings.get(msg.guild_id); //Get database
+      if (artIMG) {
+        if (artIMG.wimage) {
+          if (artIMG.wimage.toLowerCase().startsWith("http")) {
+            embed.setImage(artIMG.wimage);
+          } else {
+            embed.setImage("https://artemis.rest/static/images/fire.gif");
+          }
+        } else {
+          embed.setImage("https://artemis.rest/static/images/fire.gif");
+        }
+      } else {
+        embed.setImage("https://artemis.rest/static/images/fire.gif");
+      }
+
+      try {
+        await client.channels.cache
+          .get(await getGuild.get(msg.guild_id).generalChannel)
+          .send(`${mmbr}`, { embed });
+      } catch (err) {
+        console.log("");
+      }
+
+      let mmsSend = await getSettings.get(gld.id).wmessage;
+      if (mmsSend) {
+        try {
+          await mmbr.send(`Welcome message from ${gld.name},\n\n${mmsSend}`, {
+            split: true,
+          });
+        } catch (err) {
+          console.log("");
+        }
+      }
+    }
+  },
+};
