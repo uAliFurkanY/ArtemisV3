@@ -10,7 +10,7 @@ module.exports = {
     ////////////////////////////////////
     let msg = c.d;
 
-    if (msg.author.bot == true) return;
+    if (msg.user.bot == true) return;
 
     const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
     if (!gld) return;

@@ -124,6 +124,12 @@ module.exports = {
         "https://www.vspchannel.vet/wp-content/uploads/2019/06/recovery_anim.gif"
       );
 
+    try {
+      await target.ban({ days: 7, reason: "Artemis Rules!" }); //ACTION
+    } catch (err) {
+      return snd.send("I could not ban this user!");
+    }
+
     let timerFinal = await this.timer(INFO.time);
 
     let embed = new Discord.MessageEmbed()
@@ -177,12 +183,6 @@ module.exports = {
         time: `${timerFinal.ms}`,
       };
       await setAdminTimer.run(timersForAdmins);
-    }
-
-    try {
-      await target.ban({ days: 7, reason: "Artemis Rules!" }); //ACTION
-    } catch (err) {
-      snd.send("I could not ban this user!");
     }
 
     await snd.send(
@@ -347,6 +347,12 @@ module.exports = {
         "https://www.vspchannel.vet/wp-content/uploads/2019/06/recovery_anim.gif"
       );
 
+    try {
+      await target.kick(); //Action!
+    } catch (err) {
+      return snd.send("I could not kick this user!");
+    }
+
     let timerFinal = await this.timer(INFO.time);
 
     let embed = new Discord.MessageEmbed()
@@ -389,12 +395,6 @@ module.exports = {
     };
 
     let reply = await this.addCase(msg, client, CONFIG, npm, pushInfo);
-
-    try {
-      await target.kick(); //Action!
-    } catch (err) {
-      snd.send("I could not kick this user!");
-    }
 
     await snd.send(
       `Action \`${INFO.type}\` was successful!\nTime: ${
