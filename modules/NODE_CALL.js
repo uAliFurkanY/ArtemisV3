@@ -9,7 +9,6 @@ exports.nodes = async function () {
   Discord = require("discord.js");
   browser = require("browser");
   moment = require("moment");
-  translate = require("translate");
   html = require("html-to-text");
   colour = require("./TERM_COLOURS");
   DATABASEINI = require("./DATABASE");
