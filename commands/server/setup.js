@@ -469,7 +469,7 @@ VoiceUpdates log: ${thisGuildL.voiceupdate}
 
               await setSettings.run(thisGuildS);
               snd.send(
-                `Bots prefix is ${thisGuildS.prefix}!\nShould leveling and point gathering be ON or OFF?`
+                `Bots prefix is \`${thisGuildS.prefix}\`\nShould leveling and point gathering be ON or OFF?`
               );
             } else {
               snd.send(
@@ -524,7 +524,7 @@ VoiceUpdates log: ${thisGuildL.voiceupdate}
 
                 await setSettings.run(thisGuildS);
                 snd.send(
-                  `Bots default role is ${thisGuildS.defaultrole}!\nHow many points should welcoming new users, thanking users and congratulating users award?`
+                  `Bots default role is ${thisGuildS.defaultrole}!\nShould the bot responses to their name with witty comments be \`ON\` or \`OFF\`?`
                 );
               }
             } else {

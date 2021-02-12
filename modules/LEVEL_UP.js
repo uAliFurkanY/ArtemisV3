@@ -13,6 +13,7 @@ module.exports = {
     if (!getLevels[0]) return;
 
     for (let i of getLevels) {
+      if (!score) return;
       if (score.level >= i.level) {
         let checking = await mmbr.roles.cache.has(i.role);
         if (!checking) {

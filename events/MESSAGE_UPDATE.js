@@ -71,12 +71,13 @@ module.exports = {
         .setTimestamp();
 
       try {
-        if ((await getLogs.get(newMsg.guild_id).msgupdate) == "ON")
+        if ((await getLogs.get(newMsg.guild_id).msgupdate) == "ON") {
           await client.channels.cache
             .get(await getGuild.get(newMsg.guild_id).logsChannel)
             .send({ embed });
+        }
       } catch (err) {
-        console.log(err);
+        console.log("");
       }
     }
 
