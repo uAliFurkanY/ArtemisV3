@@ -260,4 +260,44 @@ exports.DATABASE = async function (c, client, CONFIG, npm) {
     db.pragma("synchronous = 1");
     db.pragma("journal_mode = wal");
   }
+
+  const reminderTimes = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'remindtimers';"
+    )
+    .get();
+  if (!reminderTimes["count(*)"]) {
+    await db
+      .prepare(
+        "CREATE TABLE remindtimers (GuildUserTime TEXT PRIMARY KEY, reason TEXT, channel TEXT);"
+      )
+      .run();
+    await db
+      .prepare(
+        "CREATE UNIQUE INDEX idx_remindtimers_id ON remindtimers (GuildUserTime);"
+      )
+      .run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
+
+  const bumprecord = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'bumprecord';"
+    )
+    .get();
+  if (!bumprecord["count(*)"]) {
+    await db
+      .prepare(
+        "CREATE TABLE bumprecord (GuildUser TEXT PRIMARY KEY, user TEXT, guild TEXT, bump INTEGER, dbump INTEGER, dlmbump INTEGER, like INTEGER);"
+      )
+      .run();
+    await db
+      .prepare(
+        "CREATE UNIQUE INDEX idx_bumprecord_id ON bumprecord (GuildUser);"
+      )
+      .run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
 };

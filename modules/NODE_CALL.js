@@ -20,6 +20,16 @@ exports.nodes = async function () {
   cleverbot = require("cleverbot-free");
   adminEvent = require("./ADMINISTRATIVE_EVENT");
   term_clock = `\n${colour.cyan}${moment().format("MMMM Do YYYY, HH:mm:ss")}\n`;
+  express = require("express");
+  app = express();
+  http = require("http");
+  https = require("https");
+  bodyParser = require("body-parser");
+  ejs = require("ejs");
+  youtubedl = require("youtube-dl");
+  PLAYER = require("./PLAYER");
+  search = require("youtube-search");
+  //NEED OPUS, FFMPEG, YOUTUBE-DL TOO
 
   ////////////////////////////////////
   //Initiating the databases
@@ -109,5 +119,19 @@ exports.nodes = async function () {
   getLevelUp = await db.prepare("SELECT * FROM levelup WHERE guildid = ?");
   setLevelUp = await db.prepare(
     "INSERT OR REPLACE INTO levelup (GuildAndLevel, guildid, level, role) VALUES (@GuildAndLevel, @guildid, @level, @role);"
+  );
+
+  getRemindTimer = await db.prepare(
+    "SELECT * FROM remindtimers WHERE GuildUserTime = ?"
+  );
+  setRemindTimer = await db.prepare(
+    "INSERT OR REPLACE INTO remindtimers (GuildUserTime, reason, channel) VALUES (@GuildUserTime, @reason, @channel);"
+  );
+
+  getBumpRecord = await db.prepare(
+    "SELECT * FROM bumprecord WHERE user = ? AND guild = ?"
+  );
+  setBumpRecord = await db.prepare(
+    "INSERT OR REPLACE INTO bumprecord (GuildUser, user, guild, bump, dbump, dlmbump, like) VALUES (@GuildUser, @user, @guild, @bump, @dbump, @dlmbump, @like);"
   );
 };

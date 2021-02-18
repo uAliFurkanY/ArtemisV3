@@ -1,8 +1,12 @@
 ////////////////////////////////////
-//Ban event
+//Administrative actions
 //Well stuff happens here
 ////////////////////////////////////
 module.exports = {
+  ////////////////////////////////////
+  //Create a case
+  //Well stuff happens here
+  ////////////////////////////////////
   addCase: async function (msg, client, CONFIG, npm, info) {
     let caseGrab = getACase.get(info.guildID);
     if (!caseGrab) {
@@ -43,6 +47,10 @@ module.exports = {
     }
   },
 
+  ////////////////////////////////////
+  //Convert times
+  //Well stuff happens here
+  ////////////////////////////////////
   timer: async function (time) {
     val1 = await parseInt(time); //make numbers kek
 
@@ -113,6 +121,45 @@ module.exports = {
     return time;
   },
 
+  ////////////////////////////////////
+  //Reminder event
+  //Well stuff happens here
+  ////////////////////////////////////
+  remindEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
+    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    if (!gld) return;
+
+    const target = await gld.members.cache.get(mmbr.user.id); //Get author
+
+    let timerFinal = await this.timer(INFO.time);
+
+    if (timerFinal.ms !== "PERMANENT") {
+      timersForAdmins = {
+        GuildUserTime: `${gld.id}-${mmbr.user.id}-${timerFinal.ms}`,
+        guildid: `${gld.id}`,
+        userid: `${mmbr.user.id}`,
+        type: `${INFO.type}`,
+        time: `${timerFinal.ms}`,
+      };
+      await setAdminTimer.run(timersForAdmins);
+    } else {
+      return snd.send("Something went horribly wrong!");
+    }
+
+    reminderSet = {
+      GuildUserTime: `${gld.id}-${mmbr.user.id}-${timerFinal.ms}`,
+      reason: `${INFO.reason}`,
+      channel: `${snd.id}`
+    };
+    await setRemindTimer.run(reminderSet);
+
+    await snd.send(`Reminder has been set.\nI will remind you in \`${timerFinal.nice}\``);
+  },
+
+  ////////////////////////////////////
+  //Ban Event
+  //Well stuff happens here
+  ////////////////////////////////////
   banEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
     const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
     if (!gld) return;
@@ -195,6 +242,10 @@ module.exports = {
     );
   },
 
+  ////////////////////////////////////
+  //Mute Event
+  //Well stuff happens here
+  ////////////////////////////////////
   muteEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
     const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
     if (!gld) return;
@@ -336,6 +387,10 @@ module.exports = {
     );
   },
 
+  ////////////////////////////////////
+  //Kick Event
+  //Well stuff happens here
+  ////////////////////////////////////
   kickEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
     const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
     if (!gld) return;
@@ -406,6 +461,10 @@ module.exports = {
     );
   },
 
+  ////////////////////////////////////
+  //Warn event
+  //Well stuff happens here
+  ////////////////////////////////////
   warnEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
     const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
     if (!gld) return;

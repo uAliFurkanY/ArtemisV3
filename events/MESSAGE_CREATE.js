@@ -68,6 +68,19 @@ module.exports = {
     }
 
     ////////////////////////////////////
+    //Bump triggers
+    //Will have to be expanded upon
+    ////////////////////////////////////
+    let bumpArray = ["!bump", "!d bump", "dlm!bump", "!like"];
+
+    await bumpArray.forEach((b) => {
+      if (msg.content.toLowerCase() == b) {
+        BUMP = require("../modules/BUMP");
+        BUMP.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld);
+      }
+    });
+
+    ////////////////////////////////////
     //Hello Artemis Module
     //Basically this is the verification stuff.
     ////////////////////////////////////

@@ -44,18 +44,18 @@ module.exports = {
     let count = 0;
 
     const embed = new Discord.MessageEmbed().setColor("AQUA");
-    await pull.forEach(async (m) => {
-      if (count == 10) return;
-      let usr = await gld.members.cache.get(m.user);
+    await pull.forEach((m) => {
+      if (count >= 10) return;
+      let usr = gld.members.cache.get(m.user);
       if (!usr) return;
 
       count++;
 
       embed.addField(
         `**[${count}]** ${usr.user.username}#${usr.user.discriminator}`,
-        `Level: **${m.level}**\nWorth: **${await CONFIG.CONFIG("CURRENCY")}${
-          m.points
-        }**`
+        `Level: **${m.level}**\nWorth: **${CONFIG.CONFIG(
+          "CURRENCY"
+        )}${m.points.toLocaleString()}**`
       );
     });
 

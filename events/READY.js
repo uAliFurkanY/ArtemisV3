@@ -155,6 +155,14 @@ module.exports = {
     );
 
     ////////////////////////////////////
+    //Start website
+    //This only happens once.
+    ////////////////////////////////////
+    siteInit = require("../modules/SITE");
+
+    await siteInit.site(c, client, CONFIG, npm);
+
+    ////////////////////////////////////
     //This will be repeated every X seconds
     //It's an interval after all
     ////////////////////////////////////
@@ -198,6 +206,86 @@ module.exports = {
                   `DELETE FROM admintimers WHERE GuildUserTime = '${timerData.GuildUserTime}'`
                 )
                 .run();
+              break;
+
+            case "remind":
+              let rTime = await getRemindTimer.get(
+                `${timerData.GuildUserTime}`
+              );
+
+              try {
+                snd2 = await client.channels.cache.get(rTime.channel);
+                let embed = new Discord.MessageEmbed()
+                  .setColor("DARK_NAVY")
+                  .addField("Reminder:", `${rTime.reason}`);
+
+                await snd2.send(`<@${timerData.userid}>`, embed);
+              } catch (err) {
+                await db
+                  .prepare(
+                    `DELETE FROM admintimers WHERE GuildUserTime = '${timerData.GuildUserTime}'`
+                  )
+                  .run();
+
+                await db
+                  .prepare(
+                    `DELETE FROM remindtimers WHERE GuildUserTime = '${timerData.GuildUserTime}'`
+                  )
+                  .run();
+              }
+
+              await db
+                .prepare(
+                  `DELETE FROM admintimers WHERE GuildUserTime = '${timerData.GuildUserTime}'`
+                )
+                .run();
+
+              await db
+                .prepare(
+                  `DELETE FROM remindtimers WHERE GuildUserTime = '${timerData.GuildUserTime}'`
+                )
+                .run();
+
+              break;
+
+            case "bump":
+              let rTime2 = await getRemindTimer.get(
+                `${timerData.GuildUserTime}`
+              );
+
+              try {
+                snd2 = await client.channels.cache.get(rTime2.channel);
+                let embed = new Discord.MessageEmbed()
+                  .setColor("DARK_NAVY")
+                  .addField("Bump reminder:", `${rTime2.reason}`);
+
+                await snd2.send(`<@${timerData.userid}>`, embed);
+              } catch (err) {
+                await db
+                  .prepare(
+                    `DELETE FROM admintimers WHERE GuildUserTime = '${timerData.GuildUserTime}'`
+                  )
+                  .run();
+
+                await db
+                  .prepare(
+                    `DELETE FROM remindtimers WHERE GuildUserTime = '${timerData.GuildUserTime}'`
+                  )
+                  .run();
+              }
+
+              await db
+                .prepare(
+                  `DELETE FROM admintimers WHERE GuildUserTime = '${timerData.GuildUserTime}'`
+                )
+                .run();
+
+              await db
+                .prepare(
+                  `DELETE FROM remindtimers WHERE GuildUserTime = '${timerData.GuildUserTime}'`
+                )
+                .run();
+
               break;
 
             case "ban":
