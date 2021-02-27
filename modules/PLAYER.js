@@ -15,6 +15,18 @@ module.exports = {
         `There are no users in the channel I am playing music in, Goodbye 👋`
       );
       queue.delete(gld.id);
+
+      fs.readdir(`./content/MUSIC/`, function (err, files) {
+        if (err) return;
+        files.forEach(function (file) {
+          if (file.startsWith(gld.id)) {
+            fs.unlink(`./content/MUSIC/${file}`, (err) => {
+              if (err) return;
+            });
+          }
+        });
+      });
+
       return;
     }
 
@@ -22,6 +34,17 @@ module.exports = {
       serverQueue.voiceChannel.leave();
       serverQueue.textChannel.send(`Goodbye 👋`);
       queue.delete(gld.id);
+
+      fs.readdir(`./content/MUSIC/`, function (err, files) {
+        if (err) return;
+        files.forEach(function (file) {
+          if (file.startsWith(gld.id)) {
+            fs.unlink(`./content/MUSIC/${file}`, (err) => {
+              if (err) return;
+            });
+          }
+        });
+      });
       return;
     }
 
@@ -32,7 +55,7 @@ module.exports = {
         PLAYER.eventTrigger(client, gld, serverQueue.songs[0]);
       })
       .on("error", (error) => console.error(error));
-    dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+    dispatcher.setVolume(serverQueue.volume / 100);
     let addSong = new Discord.MessageEmbed()
       .setThumbnail(song.thumb)
       .setColor("GOLD")
@@ -41,8 +64,12 @@ module.exports = {
         "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/YouTube_play_buttom_icon_(2013-2017).svg/512px-YouTube_play_buttom_icon_(2013-2017).svg.png"
       )
       .addField("Title:", `${song.title}`)
+      .addField("Duration:", `${song.dur}`)
       .addField("Requested by:", `${song.req}`)
-      .setFooter("Started playing this song");
+      .setFooter(
+        `${serverQueue.volume}% | Started playing this song`,
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Speaker_Icon.svg/500px-Speaker_Icon.svg.png"
+      );
     serverQueue.textChannel.send({ embed: addSong });
   },
 };

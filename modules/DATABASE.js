@@ -71,44 +71,6 @@ exports.DATABASE = async function (c, client, CONFIG, npm) {
     db.pragma("journal_mode = wal");
   }
 
-  const trainers = await db
-    .prepare(
-      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'trainers';"
-    )
-    .get();
-  if (!trainers["count(*)"]) {
-    await db
-      .prepare(
-        "CREATE TABLE trainers (trainerid TEXT PRIMARY KEY, pokeballs INTEGER, greatballs INTEGER, ultraballs INTEGER, masterballs INTEGER);"
-      )
-      .run();
-    await db
-      .prepare("CREATE UNIQUE INDEX idx_trainers_id ON trainers (trainerid);")
-      .run();
-    db.pragma("synchronous = 1");
-    db.pragma("journal_mode = wal");
-  }
-
-  const pokemon = await db
-    .prepare(
-      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'pokemon';"
-    )
-    .get();
-  if (!pokemon["count(*)"]) {
-    await db
-      .prepare(
-        "CREATE TABLE pokemon (trainerpokemon TEXT PRIMARY KEY, level INTEGER);"
-      )
-      .run();
-    await db
-      .prepare(
-        "CREATE UNIQUE INDEX idx_pokemon_id ON pokemon (trainerpokemon);"
-      )
-      .run();
-    db.pragma("synchronous = 1");
-    db.pragma("journal_mode = wal");
-  }
-
   const userInfo = await db
     .prepare(
       "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'userinfo';"
@@ -295,6 +257,66 @@ exports.DATABASE = async function (c, client, CONFIG, npm) {
     await db
       .prepare(
         "CREATE UNIQUE INDEX idx_bumprecord_id ON bumprecord (GuildUser);"
+      )
+      .run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
+
+  const supportchannels = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'supportchannels';"
+    )
+    .get();
+  if (!supportchannels["count(*)"]) {
+    await db
+      .prepare(
+        "CREATE TABLE supportchannels (chanid TEXT PRIMARY KEY, inuse TEXT);"
+      )
+      .run();
+    await db
+      .prepare(
+        "CREATE UNIQUE INDEX idx_supportchannels_id ON supportchannels (chanid);"
+      )
+      .run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
+
+  const sCase = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'supportcases';"
+    )
+    .get();
+  if (!sCase["count(*)"]) {
+    await db
+      .prepare(
+        "CREATE TABLE supportcases (caseid INTEGER PRIMARY KEY, userid TEXT, username TEXT, attachments TEXT, casemessage TEXT, date TEXT, solvedby TEXT, solution TEXT);"
+      )
+      .run();
+    await db
+      .prepare(
+        "CREATE UNIQUE INDEX idx_supportcases_id ON supportcases (caseid);"
+      )
+      .run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
+
+  const supportinusechannels = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'supportinusechannels';"
+    )
+    .get();
+  if (!supportinusechannels["count(*)"]) {
+    await db
+      .prepare(
+        "CREATE TABLE supportinusechannels (chanid TEXT PRIMARY KEY, caseid INTEGER);"
+      )
+      .run();
+    await db
+      .prepare(
+        "CREATE UNIQUE INDEX idx_supportinusechannels_id ON supportinusechannels (chanid);"
       )
       .run();
     db.pragma("synchronous = 1");

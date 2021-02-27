@@ -41,18 +41,6 @@ exports.nodes = async function () {
   //Loading/hotplugging all
   //databases for easy calling
   ////////////////////////////////////
-  getPokemon = await db.prepare(
-    "SELECT * FROM pokemon WHERE trainerpokemon = ?"
-  );
-  setPokemon = await db.prepare(
-    "INSERT OR REPLACE INTO pokemon (trainerpokemon, level) VALUES (@trainerpokemon, @level);"
-  );
-
-  getTrainer = await db.prepare("SELECT * FROM trainers WHERE trainerid = ?");
-  setTrainer = await db.prepare(
-    "INSERT OR REPLACE INTO trainers (trainerid, pokeballs, greatballs, ultraballs, masterballs) VALUES (@trainerid, @pokeballs, @greatballs, @ultraballs, @masterballs);"
-  );
-
   getScore = await db.prepare(
     "SELECT * FROM scores WHERE user = ? AND guild = ?"
   );
@@ -133,5 +121,26 @@ exports.nodes = async function () {
   );
   setBumpRecord = await db.prepare(
     "INSERT OR REPLACE INTO bumprecord (GuildUser, user, guild, bump, dbump, dlmbump, like) VALUES (@GuildUser, @user, @guild, @bump, @dbump, @dlmbump, @like);"
+  );
+
+  getSupportChannels = await db.prepare(
+    "SELECT * FROM supportchannels WHERE chanid = ?"
+  );
+  setSupportChannels = await db.prepare(
+    "INSERT OR REPLACE INTO supportchannels (chanid, inuse) VALUES (@chanid, @inuse);"
+  );
+
+  getSCase = await db.prepare(
+    'SELECT * FROM supportcases WHERE caseid = ? ORDER BY "caseid" DESC'
+  );
+  setSCase = await db.prepare(
+    "INSERT OR REPLACE INTO supportcases (caseid, userid, username, attachments, casemessage, date, solvedby, solution) VALUES (@caseid, @userid, @username, @attachments, @casemessage, @date, @solvedby, @solution);"
+  );
+
+  getSupportInUseChannels = await db.prepare(
+    "SELECT * FROM supportinusechannels WHERE chanid = ?"
+  );
+  setSupportInUseChannels = await db.prepare(
+    "INSERT OR REPLACE INTO supportinusechannels (chanid, caseid) VALUES (@chanid, @caseid);"
   );
 };

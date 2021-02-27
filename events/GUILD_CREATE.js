@@ -130,7 +130,7 @@ module.exports = {
       .setDescription("Artemis V3")
       .addField("Standard Prefix:", "a!")
       .addField("Setup command:", "a!setup")
-      .addField("Main Artemis Support guild:", "https://discord.gg/bJQyQQa")
+      .addField("Main Artemis Support guild:", "https://discord.gg/Y6f3XQyuTQ")
       .addField("GitHub", "https://github.com/UtopicUnicorns/ArtemisV3")
       .addField("Website", "https://artemis.rest")
       .setTimestamp();

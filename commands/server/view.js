@@ -4,10 +4,10 @@
 ////////////////////////////////////
 module.exports = {
   category: "server",
-  name: "board",
-  description: "board",
+  name: "view",
+  description: "view",
   permission: "0",
-  explain: "board",
+  explain: "view",
 
   ////////////////////////////////////
   //We pass trough some predefined things
@@ -34,31 +34,29 @@ module.exports = {
     //Main command starts here
     //Comments might get smaller here
     ////////////////////////////////////
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    let pull = await db
-      .prepare('SELECT * FROM scores WHERE guild = ? ORDER BY "points" DESC')
-      .all(gld.id);
+    if (await isNaN(arguments))
+      return snd.send("The message you send was not a number.");
 
-    let count = 0;
+    let openCase = await getSCase.get(arguments);
 
-    const embed = new Discord.MessageEmbed().setColor("AQUA");
-    await pull.forEach((m) => {
-      if (count >= 10) return;
-      let usr = gld.members.cache.get(m.user);
-      if (!usr) return;
+    if (!openCase) return snd.send("This case does not exist.");
 
-      count++;
+    let embed = new Discord.MessageEmbed()
+      .setColor("DARK_ORANGE")
+      .setThumbnail(`https://cdn.discordapp.com/icons/${gld.id}/${gld.icon}`)
+      .setTitle(`Case ${openCase.caseid}`)
 
-      embed.addField(
-        `**[${count}]** ${usr.user.username}#${usr.user.discriminator}`,
-        `Level: **${m.level}** | Worth: **${CONFIG.CONFIG(
-          "CURRENCY"
-        )}${m.points.toLocaleString()}**`
-      );
-    });
-
-    snd.send(await embed);
+      .addField("Opened by:", `${openCase.username}\n${openCase.userid}`)
+      .setFooter(`${openCase.date}`);
+    if (openCase.casemessage)
+      embed.setDescription(`${openCase.casemessage.slice(0, 1000)}`);
+    if (openCase.solution)
+      embed.addField("Solution:", `${openCase.solution.slice(0, 1000)}`);
+    if (openCase.solvedby) embed.addField("Solved by:", `${openCase.solvedby}`);
+    if (openCase.attachments) embed.setImage(`${openCase.attachments}`);
+    await snd.send(embed);
   },
 };

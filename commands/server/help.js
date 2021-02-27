@@ -1,0 +1,196 @@
+////////////////////////////////////
+//We define Category name, Command name, Description
+//Permission level and full explanation here
+////////////////////////////////////
+module.exports = {
+  category: "server",
+  name: "help",
+  description: "help",
+  permission: "0",
+  explain: "help",
+
+  ////////////////////////////////////
+  //We pass trough some predefined things
+  //Within this command we can work with Client, raw content and a config file
+  ////////////////////////////////////
+  async execute(msg, client, CONFIG, npm, mmbr) {
+    ////////////////////////////////////
+    //We fetch the channel here
+    //We can easely send with this const
+    ////////////////////////////////////
+    const snd = await client.channels.cache.get(msg.channel_id);
+
+    ////////////////////////////////////
+    //Defining the arguments here
+    //Splits can happen later if needed
+    ////////////////////////////////////
+    const prefix = await CONFIG.PREFIX("PREFIX", msg.guild_id);
+    const comName = module.exports.name;
+    const arguments = await msg.content.slice(
+      prefix.length + comName.length + 1
+    );
+
+    ////////////////////////////////////
+    //Main command starts here
+    //Comments might get smaller here
+    ////////////////////////////////////
+    const gld = await client.guilds.cache.get(msg.guild_id);
+    if (!gld) return;
+    let sChan = await getSupportChannels.get(msg.channel_id);
+
+    if (sChan) {
+      async function confirmActionFN() {
+        let counter = 0;
+        let confirmAction = snd.createMessageCollector(
+          (m) => m.author.id === msg.author.id
+        );
+        confirmAction.on("collect", async (m) => {
+          counter++;
+
+          if (counter == 1) {
+            if (m.content.toLowerCase() == "yes") {
+              return snd.send(
+                "In one message explain your issue.\nYou can also attach one file this may be a text file or an image elaborating the issue.\n\nIf this creation was a mistake then simply write `cancel`"
+              );
+            } else {
+              snd.send("Case creation canceled!");
+              return confirmAction.stop();
+            }
+          }
+
+          if (counter == 2) {
+            if (m.content.toLowerCase() == "cancel") {
+              confirmAction.stop();
+              return snd.send("Case creation canceled!");
+            } else {
+              scaseNumberGet = await db.prepare(
+                'SELECT * FROM supportcases ORDER BY "caseid" DESC'
+              );
+
+              let numGet = await scaseNumberGet.get();
+
+              if (!numGet) {
+                if (await m.attachments.first()) {
+                  var att = await m.attachments.first().url;
+                } else {
+                  var att = await "NONE";
+                }
+
+                if (m.content) {
+                  var mess = m.content.slice(0, 1000);
+                } else {
+                  var mess = "NONE";
+                }
+
+                numGet = {
+                  caseid: 1,
+                  userid: mmbr.user.id,
+                  username: `${mmbr.user.username}#${mmbr.user.discriminator}`,
+                  attachments: await att,
+                  casemessage: mess,
+                  date: `${moment().format("MMMM Do YYYY, HH:mm:ss")}`,
+                  solvedby: "NONE",
+                  solution: "",
+                };
+
+                await setSCase.run(numGet);
+              } else {
+                caseNumber = (await parseInt(numGet.caseid)) + 1;
+
+                if (await m.attachments.first()) {
+                  var att = await m.attachments.first().url;
+                } else {
+                  var att = await "NONE";
+                }
+
+                if (m.content) {
+                  var mess = m.content.slice(0, 1000);
+                } else {
+                  var mess = "NONE";
+                }
+
+                numGet = {
+                  caseid: caseNumber,
+                  userid: mmbr.user.id,
+                  username: `${mmbr.user.username}#${mmbr.user.discriminator}`,
+                  attachments: await att,
+                  casemessage: mess,
+                  date: `${moment().format("MMMM Do YYYY, HH:mm:ss")}`,
+                  solvedby: "NONE",
+                  solution: "",
+                };
+
+                await setSCase.run(numGet);
+              }
+
+              try {
+                await gld.channels
+                  .create(`🔔case-${numGet.caseid}`, {
+                    type: "text",
+                    permissionOverwrites: [
+                      {
+                        id: gld.roles.everyone,
+                        allow: [
+                          "VIEW_CHANNEL",
+                          "SEND_MESSAGES",
+                          "READ_MESSAGE_HISTORY",
+                        ],
+                      },
+                    ],
+                  })
+                  .then(async (chan) => {
+                    await chan.setParent(snd.parent);
+
+                    inuseset = {
+                      chanid: chan.id,
+                      caseid: numGet.caseid,
+                    };
+
+                    await setSupportInUseChannels.run(inuseset);
+
+                    let getThis = getGuild.get(gld.id);
+                    if (getThis) {
+                      let testRole = await gld.roles.cache.find(
+                        (r) => r.id === getThis.supportInUseChannel
+                      );
+
+                      if (testRole) {
+                        await chan.send(`${testRole}, You have been summoned!`);
+                      }
+                    }
+
+                    let embed = new Discord.MessageEmbed()
+                      .setColor("DARK_ORANGE")
+                      .setThumbnail(
+                        `https://cdn.discordapp.com/icons/${gld.id}/${gld.icon}`
+                      )
+                      .setTitle(`Case ${numGet.caseid}`)
+                      .setDescription(`${numGet.casemessage.slice(0, 1000)}`)
+                      .addField(
+                        "Opened by:",
+                        `${numGet.username}\n${numGet.userid}`
+                      )
+                      .setFooter(`${numGet.date}`);
+
+                    await chan.send(`<@${mmbr.user.id}>`, embed);
+                    if (numGet.attachments)
+                      chan.send(`Attachment:\n${numGet.attachments}`);
+                    await snd.send(
+                      `<@${mmbr.user.id}>, Your case has been opened in: ${chan}.\nYour case number is \`${numGet.caseid}\`.`
+                    );
+                  });
+              } catch (err) {
+                await snd.send("Something went wrong!");
+              }
+
+              return confirmAction.stop();
+            }
+          }
+        });
+      }
+
+      confirmActionFN();
+      return snd.send("Are you sure you want to create a case?\n`YES` or `NO`");
+    }
+  },
+};

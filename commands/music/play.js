@@ -47,6 +47,8 @@ module.exports = {
       );
     }
 
+    let num = (await Math.random()) * 1000;
+
     if (arguments.toLowerCase().startsWith("http")) {
       video = youtubedl(arguments, ["--format=18"], { cwd: __dirname });
 
@@ -58,14 +60,17 @@ module.exports = {
       await video.on("info", async function (info) {
         infoSong = {
           title: info.title,
-          url: `./content/MUSIC/${info.title}.mp4`,
+          url: `./content/MUSIC/${gld.id}-${num}.mp4`,
           thumb: info.thumbnail,
           desc: info.description,
+          dur: info._duration_hms,
         };
 
         await songInformation.push(await infoSong);
 
-        video.pipe(fs.createWriteStream(`./content/MUSIC/${info.title}.mp4`));
+        video.pipe(
+          fs.createWriteStream(`./content/MUSIC/${gld.id}-${num}.mp4`)
+        );
       });
 
       video.on("end", async function () {
@@ -79,6 +84,7 @@ module.exports = {
             thumb: songInformation[0].thumb,
             desc: songInformation[0].desc,
             req: `${mmbr.user.username}#${mmbr.user.discriminator}`,
+            dur: songInformation[0].dur,
           };
 
           if (!serverQueue) {
@@ -115,6 +121,7 @@ module.exports = {
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/YouTube_play_buttom_icon_(2013-2017).svg/512px-YouTube_play_buttom_icon_(2013-2017).svg.png"
               )
               .addField("Title:", `${song.title}`)
+              .addField("Duration:", `${song.dur}`)
               .addField("Requested by:", `${song.req}`)
               .setFooter("Song added to queue");
             return snd.send({ embed: addSong });
@@ -131,7 +138,9 @@ module.exports = {
 
       search(arguments, opts, async function (err, results) {
         if (err) return snd.send("Something went wrong!");
-        video = youtubedl(await results[0].link, ["--format=18"], { cwd: __dirname });
+        video = youtubedl(await results[0].link, ["--format=18"], {
+          cwd: __dirname,
+        });
 
         songInformation = [];
         await video.on("error", async function (info) {
@@ -139,16 +148,20 @@ module.exports = {
         });
 
         await video.on("info", async function (info) {
+          if (info._duration_raw >= 600) return snd.send("Songs may not be longer than 10 minutes!");
           infoSong = {
             title: info.title,
-            url: `./content/MUSIC/${info.title}.mp4`,
+            url: `./content/MUSIC/${gld.id}-${num}.mp4`,
             thumb: info.thumbnail,
             desc: info.description,
+            dur: info._duration_hms,
           };
 
           await songInformation.push(await infoSong);
 
-          video.pipe(fs.createWriteStream(`./content/MUSIC/${info.title}.mp4`));
+          video.pipe(
+            fs.createWriteStream(`./content/MUSIC/${gld.id}-${num}.mp4`)
+          );
         });
 
         video.on("end", async function () {
@@ -162,6 +175,7 @@ module.exports = {
               thumb: songInformation[0].thumb,
               desc: songInformation[0].desc,
               req: `${mmbr.user.username}#${mmbr.user.discriminator}`,
+              dur: songInformation[0].dur,
             };
 
             if (!serverQueue) {
@@ -198,6 +212,7 @@ module.exports = {
                   "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/YouTube_play_buttom_icon_(2013-2017).svg/512px-YouTube_play_buttom_icon_(2013-2017).svg.png"
                 )
                 .addField("Title:", `${song.title}`)
+                .addField("Duration:", `${song.dur}`)
                 .addField("Requested by:", `${song.req}`)
                 .setFooter("Song added to queue");
               return snd.send({ embed: addSong });

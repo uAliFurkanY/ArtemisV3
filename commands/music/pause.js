@@ -3,11 +3,11 @@
 //Permission level and full explanation here
 ////////////////////////////////////
 module.exports = {
-  category: "server",
-  name: "board",
-  description: "board",
+  category: "music",
+  name: "pause",
+  description: "pause",
   permission: "0",
-  explain: "board",
+  explain: "pause",
 
   ////////////////////////////////////
   //We pass trough some predefined things
@@ -37,28 +37,23 @@ module.exports = {
     const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
     if (!gld) return;
 
-    let pull = await db
-      .prepare('SELECT * FROM scores WHERE guild = ? ORDER BY "points" DESC')
-      .all(gld.id);
-
-    let count = 0;
-
-    const embed = new Discord.MessageEmbed().setColor("AQUA");
-    await pull.forEach((m) => {
-      if (count >= 10) return;
-      let usr = gld.members.cache.get(m.user);
-      if (!usr) return;
-
-      count++;
-
-      embed.addField(
-        `**[${count}]** ${usr.user.username}#${usr.user.discriminator}`,
-        `Level: **${m.level}** | Worth: **${CONFIG.CONFIG(
-          "CURRENCY"
-        )}${m.points.toLocaleString()}**`
+    const voiceChannel = mmbr.voice.channel;
+    if (!voiceChannel)
+      return snd.send("You need to be in a voice channel to play music!");
+    const permissions = voiceChannel.permissionsFor(client.user);
+    if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+      return snd.send(
+        "I need the permissions to join and speak in your voice channel!"
       );
-    });
+    }
 
-    snd.send(await embed);
+    const queue = client.queue;
+    const serverQueue = queue.get(gld.id);
+
+    if (!serverQueue) return snd.send("There is nothing playing right now.");
+
+    await serverQueue.connection.dispatcher.pause(true);
+
+    return snd.send("Music was paused!");
   },
 };

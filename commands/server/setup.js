@@ -185,7 +185,7 @@ module.exports = {
             }
             await setLogs.run(thisGuildL);
             snd.send(
-              `Logs for Reaction Adds are ${thisGuildL.reactdelete}!\nShould Invite Creations logs be ON or OFF?`
+              `Logs for Reaction Deletion are ${thisGuildL.reactdelete}!\nShould Invite Creations logs be ON or OFF?`
             );
             break;
           case 8:
@@ -788,6 +788,84 @@ Verification channel: <#${thisGuild.verificationChannel}>`
       });
     }
 
+    async function supSet() {
+      let supSetting = snd.createMessageCollector(
+        (m) => m.author.id === msg.author.id
+      );
+      let supSettingCount = 0;
+
+      supSetting.on("collect", async (m) => {
+        supSettingCount++;
+        message = m.content.replace("<", "").replace("#", "").replace(">", "");
+
+        if (m.content.toLowerCase() == "stop") return supSetting.stop();
+
+        if (supSettingCount == 1) {
+          let supChanTest = await client.channels.cache.get(message);
+
+          if (!supChanTest) {
+            supSettingCount--;
+            return snd.send(
+              "The channel you provided is not actually a channel, please try again or write `stop` to cancel this session."
+            );
+          } else {
+            channelMake = {
+              chanid: message,
+              inuse: "FALSE",
+            };
+
+            await setSupportChannels.run(channelMake);
+            return snd.send(
+              `<#${message}> has been selected as your host channel.\n\nWhen users create a session trough the support system do you want when the session starts that a certain role gets pinged/tagged; E.G: A support role. \`YES\` or \`NO\``
+            );
+          }
+        }
+
+        if (supSettingCount == 2) {
+          if (m.content.toLowerCase() !== "yes") {
+            snd.send("Alright, we are done here.");
+            return await supSetting.stop();
+          } else {
+            return snd.send(
+              "Please mention the role you want to be pinged when a session is created OR provide a role ID if you are not doing this in a private channel."
+            );
+          }
+        }
+
+        if (supSettingCount == 3) {
+          roleGet = m.content
+            .replace("<", "")
+            .replace("@", "")
+            .replace("&", "")
+            .replace(">", "");
+          let gild = await client.guilds.cache.get(msg.guild_id);
+          let supportRole = gild.roles.cache.find((r) => r.id === roleGet);
+
+          if (!supportRole) {
+            supSettingCount--;
+            return snd.send(
+              "The ID/Mention you provided was not a role!\nPlease try again or write `stop` to cancel this, your support host channel has been saved regardless."
+            );
+          } else {
+            let getSupportGuild = await getGuild.get(gild.id);
+            if (!getSupportGuild) {
+              snd.send("CRITICAL ERROR! please report this as a bug!");
+              return await supSetting.stop();
+            } else {
+              getSupportGuild.supportInUseChannel = supportRole.id;
+
+              await setGuild.run(getSupportGuild);
+
+              snd.send(
+                `${supportRole.name} has been selected as the role that gets pinged when a session starts!\nWe are done now, bye.`
+              );
+              return await supSetting.stop();
+            }
+          }
+        }
+      });
+    }
+
     if (arguments.toLowerCase().includes("--setup=")) {
       argSplit = arguments.split("--setup=");
 
@@ -817,6 +895,13 @@ Verification channel: <#${thisGuild.verificationChannel}>`
           levSet();
           snd.send(
             "Do you want to `create` a new level-up level, or `remove` an existing level-up?"
+          );
+          break;
+
+        case "support":
+          supSet();
+          snd.send(
+            "Please mention a channel that you want to be a host for support session starts, do note that the newly created sessions will be in fact new channels and will be placed in the same category as your host channel."
           );
           break;
       }
