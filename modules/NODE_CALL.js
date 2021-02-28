@@ -143,4 +143,9 @@ exports.nodes = async function () {
   setSupportInUseChannels = await db.prepare(
     "INSERT OR REPLACE INTO supportinusechannels (chanid, caseid) VALUES (@chanid, @caseid);"
   );
+
+  getHighlight = await db.prepare("SELECT * FROM hlmsg WHERE msgid = ?");
+  setHighlight = await db.prepare(
+    "INSERT OR REPLACE INTO hlmsg (msgid) VALUES (@msgid);"
+  );
 };

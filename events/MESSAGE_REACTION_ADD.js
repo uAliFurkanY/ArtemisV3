@@ -13,6 +13,7 @@ module.exports = {
       let chanReact = await client.channels.cache.get(
         reactChan.reactionChannel
       );
+
       if (chanReact && chanReact.id == msg.channel_id) {
         const message = await client.channels.cache
           .get(c.d.channel_id)
@@ -23,7 +24,7 @@ module.exports = {
         const reaction = await message.reactions.cache
           .get(emojiKey)
           .users.remove(mmbr);
-          
+
         if (msg.emoji.id) {
           let roleDBeId = await getRoles.get(msg.guild_id, msg.emoji.id);
           if (roleDBeId) {
@@ -129,6 +130,83 @@ module.exports = {
                   });
               } catch (err) {
                 console.log("");
+              }
+            }
+          }
+        }
+      }
+    }
+
+    let chanHighl = await client.channels.cache.get(reactChan.highlightChannel);
+
+    if (chanHighl) {
+      let checkMsg = await getHighlight.get(msg.message_id);
+
+      if (!checkMsg) {
+        if (msg.emoji.name == "🍵") {
+          let getMsg = await client.channels.cache
+            .get(msg.channel_id)
+            .messages.fetch(msg.message_id);
+          if (getMsg) {
+            let emoCol = await getMsg.reactions.cache.get("🍵");
+            if (emoCol) {
+              if (emoCol.count >= 3) {
+                highLightset = {
+                  msgid: msg.message_id,
+                };
+
+                await setHighlight.run(highLightset);
+
+                let embed2 = new Discord.MessageEmbed()
+                  .setAuthor(
+                    `${getMsg.author.username}#${getMsg.author.discriminator}`,
+                    `https://cdn.discordapp.com/avatars/${getMsg.author.id}/${getMsg.author.avatar}`
+                  )
+                  .setThumbnail(
+                    "https://upload.wikimedia.org/wikipedia/commons/1/1c/Cup_of_tea.png"
+                  )
+                  .setColor("MAGENTA")
+                  .setDescription("Message was highlighted!")
+                  .setFooter(
+                    `Highlighted on: ${moment().format(
+                      "MMMM Do YYYY, HH:mm:ss"
+                    )}`,
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Longjing_tea_steeping_in_gaiwan.jpg/1024px-Longjing_tea_steeping_in_gaiwan.jpg"
+                  );
+
+                if (getMsg.content)
+                  embed2.addField(
+                    "Message:",
+                    `${getMsg.content.slice(0, 1000)}`
+                  );
+
+                if (getMsg.attachments.first())
+                  embed2.setImage(getMsg.attachments.first().url);
+
+                if (getMsg.attachments.first())
+                  embed2.addField(
+                    "Attachment:",
+                    `${getMsg.attachments.first().url}`
+                  );
+
+                try {
+                  await client.channels.cache
+                    .get(msg.channel_id)
+                    .send(
+                      `Message has been highlighted in <#${await getGuild.get(
+                        msg.guild_id
+                      ).highlightChannel}>`
+                    );
+                } catch (err) {
+                  console.log(err, "");
+                }
+                try {
+                  await client.channels.cache
+                    .get(await getGuild.get(msg.guild_id).highlightChannel)
+                    .send({ embed: embed2 });
+                } catch (err) {
+                  console.log(err, "");
+                }
               }
             }
           }

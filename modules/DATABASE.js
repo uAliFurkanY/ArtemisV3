@@ -322,4 +322,18 @@ exports.DATABASE = async function (c, client, CONFIG, npm) {
     db.pragma("synchronous = 1");
     db.pragma("journal_mode = wal");
   }
+
+  const hlmsg = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'hlmsg';"
+    )
+    .get();
+  if (!hlmsg["count(*)"]) {
+    await db.prepare("CREATE TABLE hlmsg (msgid TEXT PRIMARY KEY);").run();
+    await db
+      .prepare("CREATE UNIQUE INDEX idx_hlmsg_id ON hlmsg (msgid);")
+      .run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
 };
