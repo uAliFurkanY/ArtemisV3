@@ -42,6 +42,7 @@ module.exports = {
       if (!mmbr2) return snd.send("Member not found!");
 
       let worth = await getScore.get(mmbr2.id, gld.id);
+      if (!worth) return snd.send("This user has no database entry yet!");
 
       let mathlev = await worth.level;
       let mathpoint = await worth.points;

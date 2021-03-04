@@ -62,7 +62,7 @@ module.exports = {
   Command name: \`${await CONFIG.PREFIX("PREFIX", msg.guild_id)}${com.name}\`
     Command used \`${usag.number}\` times
       Permission level: \`${com.permission}\`
-        Small description: \`${com.description}\``
+        Small description: \`${com.description}\n\``
       );
     });
     let doneCats = [];

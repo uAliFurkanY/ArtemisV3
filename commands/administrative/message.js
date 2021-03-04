@@ -6,7 +6,7 @@ module.exports = {
   category: "administrative",
   name: "message",
   description: "message",
-  permission: "2",
+  permission: "1",
   explain: "message",
 
   ////////////////////////////////////
