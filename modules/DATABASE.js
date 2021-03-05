@@ -336,4 +336,22 @@ exports.DATABASE = async function (c, client, CONFIG, npm) {
     db.pragma("synchronous = 1");
     db.pragma("journal_mode = wal");
   }
+
+  const topic = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'topic';"
+    )
+    .get();
+  if (!topic["count(*)"]) {
+    await db
+      .prepare(
+        "CREATE TABLE topic (gldidtime TEXT PRIMARY KEY, gldid TEXT, topictext TEXT);"
+      )
+      .run();
+    await db
+      .prepare("CREATE UNIQUE INDEX idx_topic_id ON topic (gldidtime);")
+      .run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
 };

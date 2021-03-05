@@ -148,4 +148,9 @@ exports.nodes = async function () {
   setHighlight = await db.prepare(
     "INSERT OR REPLACE INTO hlmsg (msgid) VALUES (@msgid);"
   );
+
+  getTopic = await db.prepare("SELECT * FROM topic WHERE gldid = ?");
+  setTopic = await db.prepare(
+    "INSERT OR REPLACE INTO topic (gldidtime, gldid, topictext) VALUES (@gldidtime, @gldid, @topictext);"
+  );
 };
