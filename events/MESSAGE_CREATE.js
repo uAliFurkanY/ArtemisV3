@@ -52,6 +52,23 @@ module.exports = {
     POINTS.eventTrigger(c, client, CONFIG, npm, mmbr);
 
     ////////////////////////////////////
+    //AutoMod Trigger
+    //We check if it's enabled
+    ////////////////////////////////////
+    let autoModCheck = await getSettings.get(msg.guild_id);
+
+    if (msg.content) {
+      if (autoModCheck) {
+        if (autoModCheck.autoMod) {
+          if (autoModCheck.autoMod == "ON") {
+            AUTO = require("../modules/AUTOMOD");
+            AUTO.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld);
+          }
+        }
+      }
+    }
+
+    ////////////////////////////////////
     //Fake AI
     //Or maybe real I don't know, fuck you
     ////////////////////////////////////

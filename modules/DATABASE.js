@@ -354,4 +354,40 @@ exports.DATABASE = async function (c, client, CONFIG, npm) {
     db.pragma("synchronous = 1");
     db.pragma("journal_mode = wal");
   }
+
+  const badword = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'badword';"
+    )
+    .get();
+  if (!badword["count(*)"]) {
+    await db
+      .prepare(
+        "CREATE TABLE badword (gldidtime TEXT PRIMARY KEY, gldid TEXT, badwords TEXT);"
+      )
+      .run();
+    await db
+      .prepare("CREATE UNIQUE INDEX idx_badword_id ON badword (gldidtime);")
+      .run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
+
+  const badphrase = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'badphrase';"
+    )
+    .get();
+  if (!badphrase["count(*)"]) {
+    await db
+      .prepare(
+        "CREATE TABLE badphrase (gldidtime TEXT PRIMARY KEY, gldid TEXT, badphrases TEXT);"
+      )
+      .run();
+    await db
+      .prepare("CREATE UNIQUE INDEX idx_badphrase_id ON badphrase (gldidtime);")
+      .run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
 };

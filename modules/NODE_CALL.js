@@ -153,4 +153,14 @@ exports.nodes = async function () {
   setTopic = await db.prepare(
     "INSERT OR REPLACE INTO topic (gldidtime, gldid, topictext) VALUES (@gldidtime, @gldid, @topictext);"
   );
+
+  getBW = await db.prepare("SELECT * FROM badword WHERE gldid = ?");
+  setBW = await db.prepare(
+    "INSERT OR REPLACE INTO badword (gldidtime, gldid, badwords) VALUES (@gldidtime, @gldid, @badwords);"
+  );
+
+  getBP = await db.prepare("SELECT * FROM badphrase WHERE gldid = ?");
+  setBP = await db.prepare(
+    "INSERT OR REPLACE INTO badphrase (gldidtime, gldid, badphrases) VALUES (@gldidtime, @gldid, @badphrases);"
+  );
 };

@@ -72,9 +72,7 @@ module.exports = {
               await setSCase.run(modify);
               await db
                 .prepare(
-                  `
-              DELETE FROM supportinusechannels WHERE chanid = '${msg.channel_id}'
-            `
+                  `DELETE FROM supportinusechannels WHERE chanid = '${msg.channel_id}'`
                 )
                 .run();
               await snd.send(
