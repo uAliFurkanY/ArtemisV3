@@ -4,7 +4,7 @@
 ////////////////////////////////////
 module.exports = {
   eventTrigger: async function (client, CONFIG, npm, mmbr, msg, snd, gld) {
-    score = await getScore.get(mmbr.user.id, msg.guild_id); //Fetch score
+    score = await getScore.get(mmbr.user.id, msg.guild_id);
     if (!score) return;
 
     getLevels = await db

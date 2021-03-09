@@ -5,9 +5,12 @@
 module.exports = {
   category: "administrative",
   name: "eval",
-  description: "eval",
+  description: "Evaluate a piece of code.",
   permission: "4",
-  explain: "eval",
+  explain: `Evaluate a piece of code.
+This command allows you to execute smaller commands and such from the chatbox.
+
+Example usage: (PREFIX)eval Math.random() * 10`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

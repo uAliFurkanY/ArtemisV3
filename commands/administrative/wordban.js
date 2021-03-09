@@ -5,9 +5,13 @@
 module.exports = {
   category: "administrative",
   name: "wordban",
-  description: "wordban",
+  description: "Allows you to add or remove blocked words.",
   permission: "1",
-  explain: "wordban",
+  explain: `Allows you to add or remove blocked words.
+To use this in action you need to have automod enabled!
+
+Example usage: (PREFIX)wordban --action=add
+Example usage: (PREFIX)wordban --action=delete`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

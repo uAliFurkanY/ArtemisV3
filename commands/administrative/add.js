@@ -5,9 +5,17 @@
 module.exports = {
   category: "administrative",
   name: "add",
-  description: "add",
+  description:
+    "This command allows you to add or remove points from a user or role.",
   permission: "2",
-  explain: "add",
+  explain: `This command allows you to add or remove points from a user or role.
+This command needs parameters.
+
+Example usage: (PREFIX)add --user=userID --points=20
+Example usage: (PREFIX)add --user=@mention --points=20
+Example usage: (PREFIX)add --user=roleID --points=20
+Example usage: (PREFIX)add --user=@roleMention --points=20
+Example usage: (PREFIX)add --user=userID --points=-20`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

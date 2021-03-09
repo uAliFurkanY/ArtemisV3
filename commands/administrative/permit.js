@@ -5,9 +5,15 @@
 module.exports = {
   category: "administrative",
   name: "permit",
-  description: "permit",
+  description:
+    "Allows the user of this command to ellevate another user permission level for one charge.",
   permission: "2",
-  explain: "permit",
+  explain: `Allows the user of this command to ellevate another user permission level for one charge.
+Permission changes with this command are good for one charge.
+You can only bestow a permission level to another use that matches your own.
+
+Example usage: (PREFIX)permit userID --level=2
+Example usage: (PREFIX)permit @mention --level=2`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

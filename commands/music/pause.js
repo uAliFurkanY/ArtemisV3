@@ -5,9 +5,12 @@
 module.exports = {
   category: "music",
   name: "pause",
-  description: "pause",
+  description: "This command allows you to pause the music player.",
   permission: "0",
-  explain: "pause",
+  explain: `This command allows you to pause the music player.
+Music needs to be playing for you to use this command.
+
+Example usage: (PREFIX)pause`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

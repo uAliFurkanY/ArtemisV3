@@ -5,9 +5,13 @@
 module.exports = {
   category: "administrative",
   name: "massrole",
-  description: "massrole",
+  description: "This command allows you to give everyone a role.",
   permission: "2",
-  explain: "massrole",
+  explain: `This command allows you to give everyone a role.
+Please use a role ID if you are in a public channel.
+
+Example usage: (PREFIX)massrole roleID
+Example usage: (PREFIX)massrole @roleMention`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

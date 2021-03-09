@@ -24,24 +24,19 @@ module.exports = {
 
     if (wordSel) {
       if (wordSel[0]) {
-        //   /\b(fuck)\b/giu
         MSG = msg.content.toLowerCase();
-
         SHOOT = 0;
 
         for (let i of wordSel) {
           let x = msg.content.toLowerCase().includes(`${i.badwords}`);
-
           if (x) {
             SHOOT++;
-
             MSG = MSG.split(`${i.badwords}`).join("***");
           }
         }
 
         if (SHOOT >= 1) {
           await msgGet.delete();
-
           return await snd.send(
             `${mmbr}, hold up!\nI detected a bad word in your message so I took the liberty of filtering it.\n\n>>> ${MSG}`
           );

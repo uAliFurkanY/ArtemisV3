@@ -5,9 +5,12 @@
 module.exports = {
   category: "music",
   name: "queue",
-  description: "queue",
+  description: "This command allows you to view the music queue.",
   permission: "0",
-  explain: "queue",
+  explain: `This command allows you to view the music queue.
+Music has to be playing for you to be able to use this command.
+
+Example usage: (PREFIX)queue`,
 
   ////////////////////////////////////
   //We pass trough some predefined things
@@ -36,16 +39,6 @@ module.exports = {
     ////////////////////////////////////
     const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
     if (!gld) return;
-
-    const voiceChannel = mmbr.voice.channel;
-    if (!voiceChannel)
-      return snd.send("You need to be in a voice channel to play music!");
-    const permissions = voiceChannel.permissionsFor(client.user);
-    if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
-      return snd.send(
-        "I need the permissions to join and speak in your voice channel!"
-      );
-    }
 
     const queue = client.queue;
     const serverQueue = queue.get(gld.id);

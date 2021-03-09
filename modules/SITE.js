@@ -1,6 +1,13 @@
+////////////////////////////////////
+//Website add module
+//gets triggered on READY
+////////////////////////////////////
 module.exports = {
   site: async function (c, client, CONFIG, npm) {
-    // App view
+    ////////////////////////////////////
+    //Select engine used
+    //In our case its ejs
+    ////////////////////////////////////
     app.set("view engine", "ejs");
     app.set("views", "./content/SITE");
     app.use(
@@ -9,7 +16,10 @@ module.exports = {
       })
     );
 
-    //require https
+    ////////////////////////////////////
+    //Force https
+    //triggers a 301 redirect
+    ////////////////////////////////////
     app.use(function (req, res, next) {
       if (req.secure) {
         next();
@@ -18,10 +28,21 @@ module.exports = {
       }
     });
 
-    // Asset directories
+    ////////////////////////////////////
+    //Static content
+    //Easy to use
+    ////////////////////////////////////
     app.use("/", express.static("./content/SITE"));
 
+    ////////////////////////////////////
+    //Basically index.html
+    //Front page stuff
+    ////////////////////////////////////
     app.get("/", async (req, res) => {
+      ////////////////////////////////////
+      //Command tree module
+      //Fetches all usable commands
+      ////////////////////////////////////
       async function commandTree() {
         let cats = [];
         await client.commands.forEach(async (com) => {
@@ -45,18 +66,28 @@ module.exports = {
           if (!procCats[cat.category]) {
             procCats[cat.category] = "DONE";
             await doneCats.push(
-              `<br><h2>Category: ${cat.category}</h2>${await cats[cat.category]}`
+              `<br><h2>Category: ${cat.category}</h2>${await cats[
+                cat.category
+              ]}`
             );
           }
         });
 
-        return await doneCats.join("").replace(/\,/g, "\n");
+        return await doneCats.join("").replace(/\,/g, "\n").replace(/\`/g, "");
       }
 
+      ////////////////////////////////////
+      //Client function
+      //Basically gives us access to raw functions
+      ////////////////////////////////////
       const test = {
         client: client,
       };
 
+      ////////////////////////////////////
+      //Render the final page
+      //All functions gets passed trough
+      ////////////////////////////////////
       res.render("index", {
         page: "index",
         test: test,
@@ -64,9 +95,18 @@ module.exports = {
       });
     });
 
+    ////////////////////////////////////
+    //Redirect to /
+    //Basically no error pages
+    ////////////////////////////////////
     app.get("*", function (req, res) {
       res.redirect("/");
     });
+
+    ////////////////////////////////////
+    //SSL and such
+    //needs proper certificates
+    ////////////////////////////////////
     const privateKey = fs.readFileSync(await CONFIG.CONFIG("privkey"), "utf8");
     const certificate = fs.readFileSync(await CONFIG.CONFIG("cert"), "utf8");
     const ca = fs.readFileSync(await CONFIG.CONFIG("chain"), "utf8");
@@ -76,6 +116,11 @@ module.exports = {
       cert: certificate,
       ca: ca,
     };
+
+    ////////////////////////////////////
+    //Start sites
+    //Both port 80 and 443 are in use
+    ////////////////////////////////////
     const httpsServer = https.createServer(credentials, app);
     const httpServer = http.createServer(app);
 

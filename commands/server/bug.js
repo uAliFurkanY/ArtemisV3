@@ -5,9 +5,12 @@
 module.exports = {
   category: "general",
   name: "bug",
-  description: "bug",
+  description: "Report a bug in the bot.",
   permission: "0",
-  explain: "bug",
+  explain: `Report a bug in the bot.
+Abuse will be punished.
+
+Example usage: (PREFIX)bug`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

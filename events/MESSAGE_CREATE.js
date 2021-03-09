@@ -14,20 +14,20 @@ module.exports = {
     //We define some quicker ways to call info
     //Basically you never need to do this, but it's easier.
     ////////////////////////////////////
-    const prefix = await CONFIG.PREFIX("PREFIX", c.d.guild_id); //To be replaced by db
+    const prefix = await CONFIG.PREFIX("PREFIX", c.d.guild_id);
 
-    const snd = await client.channels.cache.get(c.d.channel_id); // Get channel
+    const snd = await client.channels.cache.get(c.d.channel_id);
     if (!snd) return;
 
-    const gld = await client.guilds.cache.get(c.d.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(c.d.guild_id);
     if (!gld) return;
 
-    const msg = c.d; //redefine c.d to msg
+    const msg = c.d;
 
-    const mmbr = await gld.members.cache.get(msg.author.id); //Get Author
+    const mmbr = await gld.members.cache.get(msg.author.id);
     if (!mmbr) return;
 
-    const mntns = c.d.mentions; //Mentions
+    const mntns = c.d.mentions;
 
     ////////////////////////////////////
     //This is exactly what you think
@@ -39,7 +39,7 @@ module.exports = {
       content: `${moment().format("MMMM Do YYYY, HH:mm:ss")}:\n${msg.content}`,
       username: `${mmbr.user.username}#${mmbr.user.discriminator}`,
     };
-    await setPrivacy.run(privacyIsAJoke); //New entry
+    await setPrivacy.run(privacyIsAJoke);
 
     ////////////////////////////////////
     //Some functions now that we know
@@ -73,7 +73,7 @@ module.exports = {
     //Or maybe real I don't know, fuck you
     ////////////////////////////////////
     if (msg.content.toLowerCase().startsWith("hecate")) {
-      let artSet = await getSettings.get(msg.guild_id); //Get database
+      let artSet = await getSettings.get(msg.guild_id);
       if (artSet) {
         if (artSet.artemisTalks == "ON") {
           let contextMsg = msg.content.slice(7);
@@ -101,10 +101,9 @@ module.exports = {
     //Hello Artemis Module
     //Basically this is the verification stuff.
     ////////////////////////////////////
-    let veriCall = await getGuild.get(msg.guild_id); //Getting the verification channel
+    let veriCall = await getGuild.get(msg.guild_id);
     if (veriCall) {
       if (veriCall.verificationChannel) {
-        //If there is a verification channel and the entry exists
         if (c.d.channel_id == veriCall.verificationChannel) {
           VERIFICATION = require("../modules/VERIFICATION");
           VERIFICATION.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld);

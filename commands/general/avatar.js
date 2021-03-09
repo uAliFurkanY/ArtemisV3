@@ -5,9 +5,14 @@
 module.exports = {
   category: "general",
   name: "avatar",
-  description: "avatar",
+  description:
+    "This command allows you to see your own or another users avatar.",
   permission: "0",
-  explain: "avatar",
+  explain: `This command allows you to see your own or another users avatar.
+
+Example usage: (PREFIX)avatar
+Example usage: (PREFIX)avatar --user=userID
+Example usage: (PREFIX)avatar --user=@mention`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

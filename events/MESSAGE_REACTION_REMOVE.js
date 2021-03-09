@@ -1,11 +1,15 @@
+////////////////////////////////////
+//When a reaction is removed
+//this module gets triggered
+////////////////////////////////////
 module.exports = {
   eventTrigger: async function (c, client, CONFIG, npm) {
     let msg = c.d;
 
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    const mmbr = await gld.members.cache.get(msg.user_id); //Get Author
+    const mmbr = await gld.members.cache.get(msg.user_id);
     if (!mmbr) return;
 
     let reactChan = await getGuild.get(msg.guild_id);

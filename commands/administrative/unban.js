@@ -5,9 +5,13 @@
 module.exports = {
   category: "administrative",
   name: "unban",
-  description: "unban",
+  description: "This command allows you to unban a user.",
   permission: "3",
-  explain: "unban",
+  explain: `This command allows you to unban a user.
+Unbanning a user is only possible if they are actually banned!
+
+Example usage: (PREFIX)unban userID
+Example usage: (PREFIX)unban @mention`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

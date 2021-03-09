@@ -5,9 +5,14 @@
 module.exports = {
   category: "administrative",
   name: "warn",
-  description: "warn",
+  description: "Warns the target user.",
   permission: "1",
-  explain: "warn",
+  explain: `Warns the target user.
+Without the time flag the warn lasts forever.
+Acceptable time flags are: second, minute, hour, day, month, year
+
+Example usage: (PREFIX)warn userID --reason=Reason here --time=30 day
+Example usage: (PREFIX)warn @mention --reason=Reason here --time=30 hour`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

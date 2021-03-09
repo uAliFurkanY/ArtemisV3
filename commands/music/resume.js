@@ -5,9 +5,12 @@
 module.exports = {
   category: "music",
   name: "resume",
-  description: "resume",
+  description: "This command allows you to resume a paused music player.",
   permission: "0",
-  explain: "resume",
+  explain: `This command allows you to resume a paused music player.
+Music has to be playing AND paused for you to use this command.
+
+Example usage: (PREFIX)resume`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

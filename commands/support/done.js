@@ -5,9 +5,12 @@
 module.exports = {
   category: "support",
   name: "done",
-  description: "done",
+  description: "Close an in-use support session.",
   permission: "0",
-  explain: "done",
+  explain: `Close an in-use support session.
+You can only use this command within an in-use support session.
+
+Example usage: (PREFIX)done`,
 
   ////////////////////////////////////
   //We pass trough some predefined things
@@ -97,6 +100,8 @@ module.exports = {
       return snd.send(
         "Are you sure you want to close this case?\n`YES` or `NO`"
       );
+    } else {
+      snd.send("This is not an in-use support session channel.");
     }
   },
 };

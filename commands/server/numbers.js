@@ -5,9 +5,12 @@
 module.exports = {
   category: "server",
   name: "numbers",
-  description: "numbers",
+  description:
+    "This command shows the member sizes of the self asignable roles.",
   permission: "0",
-  explain: "numbers",
+  explain: `This command shows the member sizes of the self asignable roles.
+
+Example usage: (PREFIX)numbers`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

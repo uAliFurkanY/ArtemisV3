@@ -5,9 +5,13 @@
 module.exports = {
   category: "server",
   name: "react",
-  description: "react",
+  description:
+    "This command allows you to add a reaction to a message within the channel you use this command in.",
   permission: "1",
-  explain: "react",
+  explain: `This command allows you to add a reaction to a message within the channel you use this command in.
+You have to use the emoji itself to use this command, both regular and custom emojis are supported.
+
+Example usage: (PREFIX)react 👍 <:KEKW:730486351970959501> --message=messageID`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

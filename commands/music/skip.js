@@ -5,9 +5,13 @@
 module.exports = {
   category: "music",
   name: "skip",
-  description: "skip",
+  description: "This command allows you to skip songs in the queue.",
   permission: "0",
-  explain: "skip",
+  explain: `This command allows you to skip songs in the queue.
+Compare the number within (PREFIX)queue to the song you want to skip.
+
+Example usage: (PREFIX)skip
+Example usage: (PREFIX)skip 4`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

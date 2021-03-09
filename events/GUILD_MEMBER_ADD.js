@@ -12,10 +12,10 @@ module.exports = {
 
     if (msg.user.bot == true) return;
 
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    const mmbr = await gld.members.cache.get(msg.user.id); //Get author
+    const mmbr = await gld.members.cache.get(msg.user.id);
     if (!mmbr) return;
 
     ////////////////////////////////////
@@ -32,8 +32,8 @@ module.exports = {
     //Info collecting for logs channel
     //And send info to the logs channel if posible
     ////////////////////////////////////
-    let veriMute = await getScore.get(msg.user.id, c.d.guild_id); //get user info to check for mute
-    const target = await gld.members.cache.get(msg.user.id); //Get author
+    let veriMute = await getScore.get(msg.user.id, c.d.guild_id);
+    const target = await gld.members.cache.get(msg.user.id);
     let a = moment();
     let b = moment(mmbr.user.createdTimestamp);
 
@@ -102,10 +102,10 @@ module.exports = {
     //We check for verification here
     //Channel must exist, role must exists etc
     ////////////////////////////////////
-    let veriCall = await getGuild.get(msg.guild_id); //Getting the verification channel
+    let veriCall = await getGuild.get(msg.guild_id);
     let roleTest = await gld.roles.cache.find(
       (r) => r.id === getSettings.get(msg.guild_id).defaultrole
-    ); //call default role
+    );
 
     if (veriCall) {
       if (veriCall.verificationChannel) {
@@ -114,7 +114,6 @@ module.exports = {
         );
         if (roleTest) {
           if (channelTest) {
-            //if not muted
             try {
               let channel = await gld.channels.cache.find(
                 (channel) =>
@@ -184,7 +183,5 @@ module.exports = {
         console.log("");
       }
     }
-
-    //
   },
 };

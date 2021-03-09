@@ -5,9 +5,15 @@
 module.exports = {
   category: "administrative",
   name: "ban",
-  description: "ban",
+  description:
+    "This command allows you to ban a user with a reason, you can also specify parameters for time.",
   permission: "3",
-  explain: "ban",
+  explain: `This command allows you to ban a user with a reason, you can also specify parameters for time.
+Acceptable time parameters are: second OR minute OR hour OR day OR month OR year
+Using this command without time parameter results always in a permanent ban.
+
+Example usage: (PREFIX)ban userID --reason=This is a reason --time=10 hour
+Example usage: (PREFIX)ban @mention --reason=This is a reason --time=10 minute`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

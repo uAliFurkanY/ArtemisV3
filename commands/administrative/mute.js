@@ -5,9 +5,14 @@
 module.exports = {
   category: "administrative",
   name: "mute",
-  description: "mute",
+  description: "Mute a specified user.",
   permission: "1",
-  explain: "mute",
+  explain: `Mute a specified user.
+Mutes are always permanent without the time flag.
+Acceptable time flags are: second, minute, hour, day, month, year
+
+Example usage: (PREFIX)mute @mention --reason=Reason here --time=10 minute
+Example usage: (PREFIX)mute userID --reason=Reason here --time=10 day`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

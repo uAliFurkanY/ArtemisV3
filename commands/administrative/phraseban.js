@@ -5,9 +5,13 @@
 module.exports = {
   category: "administrative",
   name: "phraseban",
-  description: "phraseban",
+  description: "Allows you to add or remove blocked phrases.",
   permission: "1",
-  explain: "phraseban",
+  explain: `Allows you to add or remove blocked phrases.
+To use this in action you need to have automod enabled!
+
+Example usage: (PREFIX)phraseban --action=add
+Example usage: (PREFIX)phraseban --action=delete`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

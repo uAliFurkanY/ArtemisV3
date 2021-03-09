@@ -1,13 +1,21 @@
+////////////////////////////////////
+//When a reaction is added to a message
+//this module gets triggered
+////////////////////////////////////
 module.exports = {
   eventTrigger: async function (c, client, CONFIG, npm) {
     let msg = c.d;
 
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    const mmbr = await gld.members.cache.get(msg.user_id); //Get Author
+    const mmbr = await gld.members.cache.get(msg.user_id);
     if (!mmbr) return;
 
+    ////////////////////////////////////
+    //Reaction role module
+    //Gets triggered within a reaction channel
+    ////////////////////////////////////
     let reactChan = await getGuild.get(msg.guild_id);
     if (reactChan) {
       let chanReact = await client.channels.cache.get(
@@ -137,6 +145,10 @@ module.exports = {
       }
     }
 
+    ////////////////////////////////////
+    //Highlight system
+    //Gets triggered with tea emojis
+    ////////////////////////////////////
     let chanHighl = await client.channels.cache.get(reactChan.highlightChannel);
 
     if (chanHighl) {
@@ -214,6 +226,10 @@ module.exports = {
       }
     }
 
+    ////////////////////////////////////
+    //Reaction log module
+    //Gets triggered regardless
+    ////////////////////////////////////
     let embed = new Discord.MessageEmbed()
       .setThumbnail(
         mmbr.user.displayAvatarURL({

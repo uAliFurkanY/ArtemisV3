@@ -5,9 +5,13 @@
 module.exports = {
   category: "administrative",
   name: "unmute",
-  description: "unmute",
+  description: "This command allows you to unmute a user.",
   permission: "1",
-  explain: "unmute",
+  explain: `This command allows you to unmute a user.
+Do note that the user has to be muted to actually be able to use this command.
+
+Example usage: (PREFIX)unmute userID
+Example usage: (PREFIX)unmute @mention`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

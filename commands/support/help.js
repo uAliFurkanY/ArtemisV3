@@ -5,9 +5,12 @@
 module.exports = {
   category: "support",
   name: "help",
-  description: "help",
+  description: "This command allows you to create a support session.",
   permission: "0",
-  explain: "help",
+  explain: `This command allows you to create a support session.
+The channel this command is used in needs to be a designated support creation channel as setup in (PREFIX)setup --setup=support
+
+Example usage: (PREFIX)help`,
 
   ////////////////////////////////////
   //We pass trough some predefined things
@@ -191,6 +194,8 @@ module.exports = {
 
       confirmActionFN();
       return snd.send("Are you sure you want to create a case?\n`YES` or `NO`");
+    } else {
+      snd.send("This is not a designated support creation channel.");
     }
   },
 };

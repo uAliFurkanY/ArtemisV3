@@ -5,9 +5,13 @@
 module.exports = {
   category: "administrative",
   name: "purge",
-  description: "purge",
+  description: "Allows you to purge messages in the current channel.",
   permission: "1",
-  explain: "purge",
+  explain: `Allows you to purge messages in the current channel.
+The limit decided by the API is 100 messages.
+
+Example usage: (PREFIX)purge 100
+Example usage: (PREFIX)purge 2`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

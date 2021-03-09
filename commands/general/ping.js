@@ -5,9 +5,12 @@
 module.exports = {
   category: "general",
   name: "ping",
-  description: "ping",
+  description:
+    "This command checks the latency between the server, discord and yourself.",
   permission: "0",
-  explain: "ping",
+  explain: `This command checks the latency between the server, discord and yourself.
+  
+Example usage: (PREFIX)ping`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

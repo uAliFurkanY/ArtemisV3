@@ -5,9 +5,13 @@
 module.exports = {
   category: "administrative",
   name: "lookup",
-  description: "lookup",
+  description: "Lookup user info.",
   permission: "1",
-  explain: "lookup",
+  explain: `Lookup user info.
+This command shows you pas nicknames, usernames, wanrings, latest cases and such.
+
+Example usage: (PREFIX)lookup --user=@mention
+Example usage: (PREFIX)lookup --user=userID`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

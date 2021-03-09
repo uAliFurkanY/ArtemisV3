@@ -5,9 +5,12 @@
 module.exports = {
   category: "administrative",
   name: "kick",
-  description: "kick",
+  description: "Allows the user to kick another user.",
   permission: "2",
-  explain: "kick",
+  explain: `Allows the user to kick another user.
+
+Example usage: (PREFIX)kick @mention --reason=Fill out reason here
+Example usage: (PREFIX)kick userID --reason=Fill out reason here`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

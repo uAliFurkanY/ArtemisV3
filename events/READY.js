@@ -187,7 +187,7 @@ module.exports = {
       //We create an interval to check our
       //databases regulary.
       ////////////////////////////////////
-      let data2 = db.prepare("SELECT * FROM admintimers;").all(); //Admin Timers
+      let data2 = db.prepare("SELECT * FROM admintimers;").all();
       let adminTimeNow = moment().format("x");
       await data2.forEach(async (timerData) => {
         if (adminTimeNow > timerData.time) {
@@ -289,7 +289,7 @@ module.exports = {
               break;
 
             case "ban":
-              const bangld = await client.guilds.cache.get(timerData.guildid); //Get guild
+              const bangld = await client.guilds.cache.get(timerData.guildid);
               if (bangld) {
                 try {
                   await bangld.members.unban(timerData.userid);
@@ -364,7 +364,7 @@ module.exports = {
         }
       });
 
-      let data = db.prepare("SELECT * FROM streamers;").all(); //Twitch streams
+      let data = db.prepare("SELECT * FROM streamers;").all();
       await data.forEach((streamerData) => {
         const SCOPE = "user:read:email";
 

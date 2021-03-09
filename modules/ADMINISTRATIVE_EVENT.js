@@ -52,10 +52,10 @@ module.exports = {
   //Well stuff happens here
   ////////////////////////////////////
   timer: async function (time) {
-    val1 = await parseInt(time); //make numbers kek
+    val1 = await parseInt(time);
 
     if (time.toLowerCase().endsWith("second")) {
-      settime = Math.floor(val1 * 1000); //seconds
+      settime = Math.floor(val1 * 1000);
       time = {
         ms: moment().add(settime, "ms").format("x"),
         nice: moment().add(settime, "ms").fromNow(),
@@ -64,7 +64,7 @@ module.exports = {
       return time;
     }
     if (time.toLowerCase().endsWith("minute")) {
-      settime = Math.floor(val1 * 60000); //minutes
+      settime = Math.floor(val1 * 60000);
       time = {
         ms: moment().add(settime, "ms").format("x"),
         nice: moment().add(settime, "ms").fromNow(),
@@ -74,7 +74,7 @@ module.exports = {
     }
 
     if (time.toLowerCase().endsWith("hour")) {
-      settime = Math.floor(val1 * 3600000); //hours
+      settime = Math.floor(val1 * 3600000);
       time = {
         ms: moment().add(settime, "ms").format("x"),
         nice: moment().add(settime, "ms").fromNow(),
@@ -84,7 +84,7 @@ module.exports = {
     }
 
     if (time.toLowerCase().endsWith("day")) {
-      settime = Math.floor(val1 * 86400000); //days
+      settime = Math.floor(val1 * 86400000);
       time = {
         ms: moment().add(settime, "ms").format("x"),
         nice: moment().add(settime, "ms").fromNow(),
@@ -94,7 +94,7 @@ module.exports = {
     }
 
     if (time.toLowerCase().endsWith("month")) {
-      settime = Math.floor(val1 * 2629800000); //months
+      settime = Math.floor(val1 * 2629800000);
       time = {
         ms: moment().add(settime, "ms").format("x"),
         nice: moment().add(settime, "ms").fromNow(),
@@ -104,7 +104,7 @@ module.exports = {
     }
 
     if (time.toLowerCase().endsWith("year")) {
-      settime = Math.floor(val1 * 31557600000); //Years
+      settime = Math.floor(val1 * 31557600000);
       time = {
         ms: moment().add(settime, "ms").format("x"),
         nice: moment().add(settime, "ms").fromNow(),
@@ -126,10 +126,10 @@ module.exports = {
   //Well stuff happens here
   ////////////////////////////////////
   remindEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    const target = await gld.members.cache.get(mmbr.user.id); //Get author
+    const target = await gld.members.cache.get(mmbr.user.id);
 
     let timerFinal = await this.timer(INFO.time);
 
@@ -149,11 +149,13 @@ module.exports = {
     reminderSet = {
       GuildUserTime: `${gld.id}-${mmbr.user.id}-${timerFinal.ms}`,
       reason: `${INFO.reason}`,
-      channel: `${snd.id}`
+      channel: `${snd.id}`,
     };
     await setRemindTimer.run(reminderSet);
 
-    await snd.send(`Reminder has been set.\nI will remind you in \`${timerFinal.nice}\``);
+    await snd.send(
+      `Reminder has been set.\nI will remind you in \`${timerFinal.nice}\``
+    );
   },
 
   ////////////////////////////////////
@@ -161,10 +163,10 @@ module.exports = {
   //Well stuff happens here
   ////////////////////////////////////
   banEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    const target = await gld.members.cache.get(INFO.target); //Get author
+    const target = await gld.members.cache.get(INFO.target);
     if (!target) return snd.send("Member not found!");
     if (INFO.target == mmbr.user.id)
       return snd.send(
@@ -172,7 +174,7 @@ module.exports = {
       );
 
     try {
-      await target.ban({ days: 7, reason: "Artemis Rules!" }); //ACTION
+      await target.ban({ days: 7, reason: "Artemis Rules!" });
     } catch (err) {
       return snd.send("I could not ban this user!");
     }
@@ -247,10 +249,10 @@ module.exports = {
   //Well stuff happens here
   ////////////////////////////////////
   muteEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    const target = await gld.members.cache.get(INFO.target); //Get author
+    const target = await gld.members.cache.get(INFO.target);
     if (!target) return snd.send("Member not found!");
     if (INFO.target == mmbr.user.id)
       return snd.send(
@@ -302,7 +304,7 @@ module.exports = {
 
     let reply = await this.addCase(msg, client, CONFIG, npm, pushInfo);
 
-    let muteuserinfo = await getUserInfo.get(INFO.target); //add warning point global
+    let muteuserinfo = await getUserInfo.get(INFO.target);
 
     if (!muteuserinfo) {
       muteuserinfo = {
@@ -319,7 +321,7 @@ module.exports = {
       await setUserInfo.run(muteuserinfo);
     }
 
-    let muteBase = await getScore.get(INFO.target, gld.id); //Add warning point
+    let muteBase = await getScore.get(INFO.target, gld.id);
 
     if (!muteBase) {
       muteBase = {
@@ -392,10 +394,10 @@ module.exports = {
   //Well stuff happens here
   ////////////////////////////////////
   kickEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    const target = await gld.members.cache.get(INFO.target); //Get author
+    const target = await gld.members.cache.get(INFO.target);
     if (!target) return snd.send("Member not found!");
     if (INFO.target == mmbr.user.id)
       return snd.send(
@@ -466,10 +468,10 @@ module.exports = {
   //Well stuff happens here
   ////////////////////////////////////
   warnEvent: async function (msg, client, CONFIG, npm, mmbr, INFO, snd) {
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    const target = await gld.members.cache.get(INFO.target); //Get author
+    const target = await gld.members.cache.get(INFO.target);
     if (!target) return snd.send("Member not found!");
     if (INFO.target == mmbr.user.id)
       return snd.send(
@@ -521,7 +523,7 @@ module.exports = {
 
     let reply = await this.addCase(msg, client, CONFIG, npm, pushInfo);
 
-    let warnuserinfo = await getUserInfo.get(INFO.target); //add warning point global
+    let warnuserinfo = await getUserInfo.get(INFO.target);
 
     if (!warnuserinfo) {
       warnuserinfo = {
@@ -538,7 +540,7 @@ module.exports = {
       await setUserInfo.run(warnuserinfo);
     }
 
-    let warnBase = await getScore.get(INFO.target, gld.id); //Add warning point
+    let warnBase = await getScore.get(INFO.target, gld.id);
 
     if (!warnBase) {
       warnBase = {

@@ -5,9 +5,13 @@
 module.exports = {
   category: "music",
   name: "play",
-  description: "play",
+  description: "Play a song.",
   permission: "0",
-  explain: "play",
+  explain: `Play a song.
+You need to be in a voice channel to use this command.
+
+Example usage: (PREFIX)play Never gonna give you up
+Example usage: (PREFIX)play https://www.youtube.com/watch?v=dQw4w9WgXcQ`,
 
   ////////////////////////////////////
   //We pass trough some predefined things
@@ -148,7 +152,8 @@ module.exports = {
         });
 
         await video.on("info", async function (info) {
-          if (info._duration_raw >= 600) return snd.send("Songs may not be longer than 10 minutes!");
+          if (info._duration_raw >= 600)
+            return snd.send("Songs may not be longer than 10 minutes!");
           infoSong = {
             title: info.title,
             url: `./content/MUSIC/${gld.id}-${num}.mp4`,

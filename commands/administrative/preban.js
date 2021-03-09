@@ -5,9 +5,15 @@
 module.exports = {
   category: "administrative",
   name: "preban",
-  description: "preban",
+  description:
+    "Allows the user to ban another user even if they are not in your guild.",
   permission: "3",
-  explain: "preban",
+  explain: `Allows the user to ban another user even if they are not in your guild.
+This command leaves no logs and will not remove past messages from the banned user.
+However this command allows you to pre-emptively ban a user.
+
+Example usage: (PREFIX)preban userID
+Example usage: (PREFIX)preban @mention`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

@@ -5,9 +5,11 @@
 module.exports = {
   category: "support",
   name: "view",
-  description: "view",
+  description: "This command allows you to view a previous support ticket.",
   permission: "0",
-  explain: "view",
+  explain: `This command allows you to view a previous support ticket.
+  
+Example usage: (PREFIX)view 10`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

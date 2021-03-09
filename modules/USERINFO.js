@@ -8,16 +8,16 @@ module.exports = {
     //We define the guild here and change
     //c.d to msg for ease of use
     ////////////////////////////////////
-    const gld = await client.guilds.cache.get(c.d.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(c.d.guild_id);
     if (!gld) return;
 
-    const msg = c.d; //redefine c.d to msg
+    const msg = c.d;
 
     ////////////////////////////////////
     //We check if a user has a db entry
     //If they do they will be monitored to see if they change their name/nick
     ////////////////////////////////////
-    userinfo = await getUserInfo.get(mmbr.user.id); //Fetch info
+    userinfo = await getUserInfo.get(mmbr.user.id);
     if (userinfo) {
       if (mmbr.nickname) {
         ////////////////////////////////////
@@ -54,7 +54,7 @@ module.exports = {
           } catch (err) {
             console.log("");
           }
-          userinfo.nickname = `${userinfo.nickname}${mmbr.nickname}##`; //Append new nickname
+          userinfo.nickname = `${userinfo.nickname}${mmbr.nickname}##`;
           setUserInfo.run(userinfo);
         }
       }
@@ -94,7 +94,7 @@ module.exports = {
           console.log("");
         }
 
-        userinfo.username = `${userinfo.username}${mmbr.user.username}##`; //Append new username
+        userinfo.username = `${userinfo.username}${mmbr.user.username}##`;
         setUserInfo.run(userinfo);
       }
     } else {
@@ -110,7 +110,7 @@ module.exports = {
         totalwarnings: 0,
         totalmutes: 0,
       };
-      setUserInfo.run(userinfo); //New entry
+      setUserInfo.run(userinfo);
     }
   },
 };

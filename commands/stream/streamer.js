@@ -5,9 +5,13 @@
 module.exports = {
   category: "stream",
   name: "streamer",
-  description: "streamer",
+  description:
+    "This command allows you to add or remove streamers from the stream list.",
   permission: "2",
-  explain: "streamer",
+  explain: `This command allows you to add or remove streamers from the stream list.
+For this to be in action you need to have setup a streaming channel.
+
+Example usage: (PREFIX)streamer StreamerName`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

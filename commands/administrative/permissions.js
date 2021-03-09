@@ -5,9 +5,12 @@
 module.exports = {
   category: "administrative",
   name: "permissions",
-  description: "permissions",
+  description:
+    "This command allows you to see what permissions the bot has in the channel you use the command in.",
   permission: "1",
-  explain: "permissions",
+  explain: `This command allows you to see what permissions the bot has in the channel you use the command in.
+  
+  Example usage: (PREFIX)permissions`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

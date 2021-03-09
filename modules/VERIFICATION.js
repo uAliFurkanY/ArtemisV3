@@ -4,16 +4,14 @@
 ////////////////////////////////////
 module.exports = {
   eventTrigger: async function (client, CONFIG, npm, mmbr, msg, snd, gld) {
-    //If the current channel is the verification channel
     if (msg.content.toLowerCase() == "hello artemis") {
-      //If message is hello artemis
-      let veriMute = await getScore.get(msg.author.id, msg.guild_id); //get user info to check for mute
-      let veriCall = await getGuild.get(msg.guild_id); //Getting the verification channel
+      let veriMute = await getScore.get(msg.author.id, msg.guild_id);
+      let veriCall = await getGuild.get(msg.guild_id);
       if (veriMute) {
         if (veriMute.muted == "1")
           return await snd.send(
             "Seems like you may not get yourself verified, since you appear to be muted."
-          ); //User has been muted and somehow got into this channel
+          );
       }
 
       await snd.send(`${mmbr}, You have been granted access!`);
@@ -85,7 +83,7 @@ module.exports = {
           `${years} Years  ${months} Months ${days} Days`
         );
 
-      let artIMG = await getSettings.get(msg.guild_id); //Get database
+      let artIMG = await getSettings.get(msg.guild_id);
       if (artIMG) {
         if (artIMG.wimage) {
           if (artIMG.wimage.toLowerCase().startsWith("http")) {

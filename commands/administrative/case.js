@@ -5,9 +5,15 @@
 module.exports = {
   category: "administrative",
   name: "case",
-  description: "case",
+  description: "View, edit, invalidate and lookup cases.",
   permission: "1",
-  explain: "case",
+  explain: `View, edit, invalidate and lookup cases.
+Cases are created for mutes, warns, kicks and bans.
+
+Example usage: (PREFIX)case --view=3
+Example usage: (PREFIX)case --user=@mention
+Example usage: (PREFIX)case --edit=3
+Example usage: (PREFIX)case --invalidate=3`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

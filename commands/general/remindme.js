@@ -5,9 +5,14 @@
 module.exports = {
   category: "general",
   name: "remindme",
-  description: "remindme",
+  description: "This command allows you to set a reminder.",
   permission: "0",
-  explain: "remindme",
+  explain: `This command allows you to set a reminder.
+This command needs the time parameter!
+Acceptable time flags are: second, minute, hour, day, month, year
+
+Example usage: (PREFIX)remindme This is an example reminder --time=1 hour
+Example usage: (PREFIX)remindme Another example reminder --time=2 day`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

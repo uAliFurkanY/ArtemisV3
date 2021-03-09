@@ -5,9 +5,14 @@
 module.exports = {
   category: "server",
   name: "topic",
-  description: "topic",
+  description: "This command allows you to set a topic or create/view them.",
   permission: "1",
-  explain: "topic",
+  explain: `This command allows you to set a topic or create/view them.
+Without parameters this command will pull a random topic and applies it.
+
+Example usage: (PREFIX)topic
+Example usage: (PREFIX)topic Example Topic text --action=create
+Example usage: (PREFIX)topic --action=view`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

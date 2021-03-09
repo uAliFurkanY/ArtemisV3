@@ -5,9 +5,15 @@
 module.exports = {
   category: "music",
   name: "vol",
-  description: "vol",
+  description:
+    "This command allows you to change the volume of the music player.",
   permission: "0",
-  explain: "vol",
+  explain: `This command allows you to change the volume of the music player.
+Volume changes persist trough music changes, but only if the bot has not left the voice channel.
+
+Example usage: (PREFIX)vol 10
+Example usage: (PREFIX)vol 50
+Example usage: (PREFIX)vol 100`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

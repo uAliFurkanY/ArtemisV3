@@ -20,8 +20,8 @@ module.exports = {
     await mntns.forEach(async (trouble) => {
       thankCount++;
       if (
-        //trouble.id !== msg.author.id &&
-        await getScore.get(trouble.id, msg.guild_id)
+        trouble.id !== msg.author.id &&
+        (await getScore.get(trouble.id, msg.guild_id))
       ) {
         let thankget = await getScore.get(trouble.id, msg.guild_id);
         thankget.bonus++;

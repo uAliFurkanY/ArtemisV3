@@ -5,9 +5,12 @@
 module.exports = {
   category: "support",
   name: "open",
-  description: "open",
+  description: "This command allows you to reopen a previous support ticket.",
   permission: "0",
-  explain: "open",
+  explain: `This command allows you to reopen a previous support ticket.
+This command is to be used in a designated support creation channel.
+
+Example usage: (PREFIX)open 20`,
 
   ////////////////////////////////////
   //We pass trough some predefined things
@@ -132,6 +135,8 @@ module.exports = {
       return snd.send(
         "Are you sure you want to re-open this case?\n`YES` or `NO`"
       );
+    } else {
+      snd.send("This is not a designated support creation channel.");
     }
   },
 };

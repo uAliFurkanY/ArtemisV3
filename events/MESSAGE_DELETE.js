@@ -1,11 +1,15 @@
+////////////////////////////////////
+//When a message is deleted
+//this module gets triggered
+////////////////////////////////////
 module.exports = {
   eventTrigger: async function (c, client, CONFIG, npm) {
     let msg = c.d;
 
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
-    let veriCall = await getGuild.get(msg.guild_id); //Getting the verification channel
+    let veriCall = await getGuild.get(msg.guild_id);
     if (veriCall) {
       if (veriCall.verificationChannel) {
         if (veriCall.verificationChannel == msg.channel_id) return;

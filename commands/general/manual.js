@@ -5,9 +5,11 @@
 module.exports = {
   category: "general",
   name: "manual",
-  description: "manual",
+  description: "This command is able to fetch Linux manual pages.",
   permission: "0",
-  explain: "manual",
+  explain: `This command is able to fetch Linux manual pages.
+  
+Example usage: (PREFIX)manual neofetch`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

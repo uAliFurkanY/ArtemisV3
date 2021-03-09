@@ -5,9 +5,21 @@
 module.exports = {
   category: "server",
   name: "setup",
-  description: "setup",
+  description: "This command allows you to setup important server settings.",
   permission: "3",
-  explain: "setup",
+  explain: `This command allows you to setup important server settings.
+This command allows step by step configuration.
+
+Example usage: (PREFIX)setup --setup=channels
+Example usage: (PREFIX)setup --setup=settings
+Example usage: (PREFIX)setup --setup=logs
+Example usage: (PREFIX)setup --setup=levels
+Example usage: (PREFIX)setup --setup=support
+
+Example usage: (PREFIX)setup --view=channels
+Example usage: (PREFIX)setup --view=logs
+Example usage: (PREFIX)setup --view=levels
+Example usage: (PREFIX)setup --view=settings`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

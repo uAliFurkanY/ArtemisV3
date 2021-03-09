@@ -5,9 +5,11 @@
 module.exports = {
   category: "general",
   name: "uwu",
-  description: "uwu",
+  description: "Convert text to the horrifying UWU speech.",
   permission: "0",
-  explain: "uwu",
+  explain: `Convert text to the horrifying UWU speech.
+
+Example usage: (PREFIX)uwu Welcome to the jungle!`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

@@ -5,9 +5,12 @@
 module.exports = {
   category: "general",
   name: "search",
-  description: "search",
+  description: "Search the internet within Discord!",
   permission: "0",
-  explain: "search",
+  explain: `Search the internet within Discord!
+This command will pull your search query trough StartPage.
+
+Example usage: (PREFIX)search Why do farts smell?`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

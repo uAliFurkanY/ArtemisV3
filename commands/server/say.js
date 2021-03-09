@@ -5,9 +5,12 @@
 module.exports = {
   category: "server",
   name: "say",
-  description: "say",
+  description: "Make the bot say stuff within other channels.",
   permission: "1",
-  explain: "say",
+  explain: `Make the bot say stuff within other channels.
+
+Example usage: (PREFIX)say Hello I am a bot! --channel=ChannelID
+Example usage: (PREFIX)say Me so hungry. --channel= ChannelMention`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

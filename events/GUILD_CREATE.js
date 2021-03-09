@@ -84,10 +84,10 @@ module.exports = {
     //We create an embed with some useful info
     //And send it to our main server.
     ////////////////////////////////////
-    const gld = await client.guilds.cache.get(msg.id); //Get guild
+    const gld = await client.guilds.cache.get(msg.id);
     if (!gld) return;
 
-    const mmbr = await gld.members.cache.get(msg.owner_id); //Get author
+    const mmbr = await gld.members.cache.get(msg.owner_id);
     if (!mmbr) return;
 
     let embed = new Discord.MessageEmbed()

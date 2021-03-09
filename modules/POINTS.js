@@ -4,7 +4,7 @@
 ////////////////////////////////////
 module.exports = {
   eventTrigger: async function (c, client, CONFIG, npm, mmbr) {
-    score = await getScore.get(mmbr.user.id, c.d.guild_id); //Fetch score
+    score = await getScore.get(mmbr.user.id, c.d.guild_id);
     if (score) {
       score.points++;
       const curLevel = Math.floor(0.5 * Math.sqrt(score.points));

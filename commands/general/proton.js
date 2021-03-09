@@ -5,9 +5,13 @@
 module.exports = {
   category: "general",
   name: "proton",
-  description: "proton",
+  description:
+    "This command allows you to check if a steam game runs via proton on Linux.",
   permission: "0",
-  explain: "proton",
+  explain: `This command allows you to check if a steam game runs via proton on Linux.
+*Courtesy of ProtonDB*
+
+Example usage: (PREFIX)proton subnautica`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

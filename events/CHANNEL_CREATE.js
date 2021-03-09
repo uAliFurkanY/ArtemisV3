@@ -1,8 +1,12 @@
+////////////////////////////////////
+//When a channel is made
+//this module gets triggered
+////////////////////////////////////
 module.exports = {
   eventTrigger: async function (c, client, CONFIG, npm) {
     let msg = c.d;
 
-    const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
     let embed = new Discord.MessageEmbed()

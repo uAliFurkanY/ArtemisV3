@@ -5,9 +5,12 @@
 module.exports = {
   category: "music",
   name: "np",
-  description: "np",
+  description: "This command shows you the current song that is playing.",
   permission: "0",
-  explain: "np",
+  explain: `This command shows you the current song that is playing.
+Music needs to be playing to be able to use this command.
+
+Example usage: (PREFIX)np`,
 
   ////////////////////////////////////
   //We pass trough some predefined things
@@ -36,16 +39,6 @@ module.exports = {
     ////////////////////////////////////
     const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
     if (!gld) return;
-
-    const voiceChannel = mmbr.voice.channel;
-    if (!voiceChannel)
-      return snd.send("You need to be in a voice channel to play music!");
-    const permissions = voiceChannel.permissionsFor(client.user);
-    if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
-      return snd.send(
-        "I need the permissions to join and speak in your voice channel!"
-      );
-    }
 
     const queue = client.queue;
     const serverQueue = queue.get(gld.id);

@@ -5,9 +5,12 @@
 module.exports = {
   category: "general",
   name: "user",
-  description: "user",
+  description: "Lookup some basic information about a user.",
   permission: "0",
-  explain: "user",
+  explain: `Lookup some basic information about a user.
+
+Example usage: (PREFIX)user --user=@mention
+Example usage: (PREFIX)user --user=userID`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

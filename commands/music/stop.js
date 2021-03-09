@@ -5,9 +5,12 @@
 module.exports = {
   category: "music",
   name: "stop",
-  description: "stop",
+  description: "This command allows you to stop the music player.",
   permission: "0",
-  explain: "stop",
+  explain: `This command allows you to stop the music player.
+You need to be inside a voice channel AND there has to be music playing for you to be able to use this command.
+
+Example usage: (PREFIX)stop`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

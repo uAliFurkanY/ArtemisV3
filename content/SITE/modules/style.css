@@ -365,14 +365,14 @@ h2:hover {
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.8);
   text-align: left;
-  padding: 5px 0;
+  padding-left: 10px;
   border-radius: 10px 0px 10px 0px;
   border-style: outset;
   border-width: 5px;
   border-color: rgba(70, 83, 119, 0.5);
   width: 500px;
   top: -5px;
-  left: 105%;
+  left: 140%;
   margin-right: 10px;
   position: absolute;
   transition: 500ms;

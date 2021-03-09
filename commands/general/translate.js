@@ -5,9 +5,12 @@
 module.exports = {
   category: "general",
   name: "translate",
-  description: "translate",
+  description: "Translate any language to English.",
   permission: "0",
-  explain: "translate",
+  explain: `Translate any language to English.
+Nearly every language is supported.
+
+Example usage: (PREFIX)translate Hoe gaat het met U?`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

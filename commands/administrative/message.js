@@ -5,9 +5,15 @@
 module.exports = {
   category: "administrative",
   name: "message",
-  description: "message",
+  description: "This command allows you to see messages send in your server.",
   permission: "1",
-  explain: "message",
+  explain: `This command allows you to see messages send in your server.
+This command compliments the privacy respecting deletion logs.
+It allows you to see a message that has been deleted/send in channels where you do not expose the user in question.
+
+Example usage: (PREFIX)message --message=messageID
+Example usage: (PREFIX)message --user=@mention
+Example usage: (PREFIX)message --user=userID`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

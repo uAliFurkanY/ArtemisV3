@@ -5,9 +5,11 @@
 module.exports = {
   category: "server",
   name: "board",
-  description: "board",
+  description: "This command will show you the top 10 points holders.",
   permission: "0",
-  explain: "board",
+  explain: `This command will show you the top 10 points holders.
+  
+Example usage: (PREFIX)board`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

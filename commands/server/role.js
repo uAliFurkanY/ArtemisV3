@@ -5,9 +5,15 @@
 module.exports = {
   category: "server",
   name: "role",
-  description: "role",
+  description:
+    "This command allows you to add or remove a self asignable role.",
   permission: "2",
-  explain: "role",
+  explain: `This command allows you to add or remove a self asignable role.
+You can specify a role within the process with either a roleID or a role mention.
+Emojis askes can be custom emojis or regular emojis.
+
+Example usage: (PREFIX)role --action=add
+Example usage: (PREFIX)role --action=delete`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

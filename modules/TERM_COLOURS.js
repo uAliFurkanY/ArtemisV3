@@ -1,3 +1,7 @@
+////////////////////////////////////
+//Easy colours for terminal
+//can be called for fancy logging
+////////////////////////////////////
 module.exports = {
   reset: "\033[0m",
   hicolor: "\033[1m",

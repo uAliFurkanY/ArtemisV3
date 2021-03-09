@@ -23,8 +23,8 @@ module.exports = {
     //Defining the old and new message
     //This way we can work with it more easely
     ////////////////////////////////////
-    const oldMsg = msg._edits[0]; //Define the old message
-    const newMsg = c.d; // New message
+    const oldMsg = msg._edits[0];
+    const newMsg = c.d;
     if (!newMsg) return;
     if (!newMsg.content) return;
 
@@ -32,15 +32,15 @@ module.exports = {
     //We define some quicker ways to call info
     //Basically you never need to do this, but it's easier.
     ////////////////////////////////////
-    const prefix = await CONFIG.PREFIX("PREFIX", c.d.guild_id); //To be replaced by db
+    const prefix = await CONFIG.PREFIX("PREFIX", c.d.guild_id);
 
     const snd = await client.channels.cache.get(c.d.channel_id);
     if (!snd) return;
 
-    const gld = await client.guilds.cache.get(c.d.guild_id); //Get guild
+    const gld = await client.guilds.cache.get(c.d.guild_id);
     if (!gld) return;
 
-    const mmbr = await gld.members.cache.get(newMsg.author.id); //Get author
+    const mmbr = await gld.members.cache.get(newMsg.author.id);
     if (!mmbr) return;
 
     const mntns = c.d.mentions; //mentions
