@@ -101,7 +101,7 @@ module.exports = {
     if (!arguments) {
       confirmActionFN();
       snd.send(
-        "Are you in a channel where you can use bot commands?\nThis command will give a rather big output.\n`YES` or `NO`"
+        "Also available on:\n <https://artemis.rest/commands> \n\nAre you in a channel where you can use bot commands?\nThis command will give a rather big output.\n`YES` or `NO`"
       );
     } else {
       let comGet = await client.commands.get(arguments);

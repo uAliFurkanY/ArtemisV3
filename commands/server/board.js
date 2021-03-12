@@ -45,7 +45,12 @@ Example usage: (PREFIX)board`,
 
     let count = 0;
 
-    const embed = new Discord.MessageEmbed().setColor("AQUA");
+    const embed = new Discord.MessageEmbed()
+      .setColor("AQUA")
+      .setDescription(
+        `Full leaderboard on:\n https://artemis.rest/leaderboard-${gld.id}`
+      );
+
     await pull.forEach((m) => {
       if (count >= 10) return;
       let usr = gld.members.cache.get(m.user);

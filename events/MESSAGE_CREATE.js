@@ -112,23 +112,33 @@ module.exports = {
     }
 
     ////////////////////////////////////
-    //Thanking and congratulating module
-    //Calls all mentions and rewards accordingly
+    //Checks if leveling is enabled!
+    //If it is these 2 modules are triggered
     ////////////////////////////////////
-    if (
-      msg.content.toLowerCase().includes("thank") ||
-      msg.content.toLowerCase().includes("congrat")
-    ) {
-      THANKS = require("../modules/THANKS");
-      THANKS.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld, mntns);
-    }
+    let pointGather = await getSettings.get(gld.id);
 
-    ////////////////////////////////////
-    //Level up events/modules
-    //Only happens on new messages period
-    ////////////////////////////////////
-    LEVEL_UP = require("../modules/LEVEL_UP");
-    LEVEL_UP.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld);
+    if (pointGather) {
+      if (pointGather.leveling == "ON") {
+        ////////////////////////////////////
+        //Thanking and congratulating module
+        //Calls all mentions and rewards accordingly
+        ////////////////////////////////////
+        if (
+          msg.content.toLowerCase().includes("thank") ||
+          msg.content.toLowerCase().includes("congrat")
+        ) {
+          THANKS = require("../modules/THANKS");
+          THANKS.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld, mntns);
+        }
+
+        ////////////////////////////////////
+        //Level up events/modules
+        //Only happens on new messages period
+        ////////////////////////////////////
+        LEVEL_UP = require("../modules/LEVEL_UP");
+        LEVEL_UP.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld);
+      }
+    }
 
     ////////////////////////////////////
     //Commands get executed here
