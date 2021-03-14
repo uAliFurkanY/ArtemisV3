@@ -165,5 +165,21 @@ module.exports = {
     });
 
     await snd.send("Phase 5 complete.");
+
+    //phase 6
+    ff = await migrateDB.prepare("SELECT * FROM streamers;").all();
+
+    await ff.forEach((F) => {
+      streamerAdd = {
+        streamerguild: `${F.streamerguild}`,
+        streamer: `${F.streamer}`,
+        guild: `${F.guild}`,
+        status: `offline`,
+      };
+
+      setStream.run(streamerAdd);
+    });
+
+    await snd.send("Phase 6 complete.");
   },
 };

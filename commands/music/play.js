@@ -51,6 +51,14 @@ Example usage: (PREFIX)play https://www.youtube.com/watch?v=dQw4w9WgXcQ`,
       );
     }
 
+    if (!arguments) {
+      return snd.send(`Play a song.
+You need to be in a voice channel to use this command.
+
+Example usage: ${prefix}play Never gonna give you up
+Example usage: ${prefix}play https://www.youtube.com/watch?v=dQw4w9WgXcQ`);
+    }
+
     let num = (await Math.random()) * 1000;
 
     if (arguments.toLowerCase().startsWith("http")) {
@@ -152,7 +160,7 @@ Example usage: (PREFIX)play https://www.youtube.com/watch?v=dQw4w9WgXcQ`,
         });
 
         await video.on("info", async function (info) {
-          if (info._duration_raw >= 600)
+          if (info._duration_raw >= 1300)
             return snd.send("Songs may not be longer than 10 minutes!");
           infoSong = {
             title: info.title,

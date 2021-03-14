@@ -1,0 +1,46 @@
+{
+  "name": "artemis",
+  "version": "3.0.0",
+  "description": "Discord bot based on Artemis Version 2 with major improvements.",
+  "main": "index.js",
+  "dependencies": {
+    "@discordjs/opus": "^0.4.0",
+    "better-sqlite3": "^7.1.2",
+    "body-parser": "^1.19.0",
+    "browser": "^0.2.6",
+    "cleverbot-free": "^1.0.5",
+    "discord.js": "^12.5.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "html-to-text": "^6.0.0",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
+    "install": "^0.13.0",
+    "moment": "^2.29.1",
+    "node-html-parser": "^2.0.1",
+    "npm": "^6.14.10",
+    "path": "^0.12.7",
+    "request": "^2.88.2",
+    "youtube-dl": "^3.2.0",
+    "youtube-search": "^1.1.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UtopicUnicorns/ArtemisV3.git"
+  },
+  "keywords": [
+    "artemis",
+    "discord",
+    "bot"
+  ],
+  "author": "Richard Dorrestijn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UtopicUnicorns/ArtemisV3/issues"
+  },
+  "homepage": "https://artemis.rest"
+}

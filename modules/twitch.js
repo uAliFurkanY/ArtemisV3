@@ -25,6 +25,8 @@ module.exports = {
     settingsGet = await getSettings.get(dat[1]);
     if (!settingsGet) return;
 
+    //return console.log(settingsGet);
+
     ////////////////////////////////////
     //Load the guild itself
     //We can do stuff with it
@@ -94,9 +96,16 @@ module.exports = {
             .setImage(gameImg)
             .setFooter(`Viewers: ${streamView}`);
           if (settingsGet.streamHere == "ON") {
-            return await snd.send("@here", {
-              embed,
-            });
+            let finalcheck = await getSettings.get(snd.guild.id);
+            if ((await finalcheck.streamHere) == "ON") {
+              return await snd.send("@here", {
+                embed,
+              });
+            } else {
+              return await snd.send({
+                embed,
+              });
+            }
           } else {
             return await snd.send({
               embed,

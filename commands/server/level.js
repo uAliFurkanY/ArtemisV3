@@ -4,15 +4,15 @@
 ////////////////////////////////////
 module.exports = {
   category: "server",
-  name: "stats",
+  name: "level",
   description:
     "This command allows you to show your own or another user level and points.",
   permission: "0",
   explain: `This command allows you to show your own or another user level and points.
 This command also shows the amount of warning points and received bonusses.
 
-Example usage: (PREFIX)stats --user=userID
-Example usage: (PREFIX)stats --user=@mention`,
+Example usage: (PREFIX)level --user=userID
+Example usage: (PREFIX)level --user=@mention`,
 
   ////////////////////////////////////
   //We pass trough some predefined things

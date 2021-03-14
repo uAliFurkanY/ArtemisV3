@@ -41,6 +41,13 @@ Example usage: (PREFIX)react 👍 <:KEKW:730486351970959501> --message=messageID
     const gld = await client.guilds.cache.get(msg.guild_id); //Get guild
     if (!gld) return;
 
+    if (!arguments) {
+      return snd.send(`This command allows you to add a reaction to a message within the channel you use this command in.
+You have to use the emoji itself to use this command, both regular and custom emojis are supported.
+
+Example usage: ${prefix}react 👍 <:KEKW:730486351970959501> --message=messageID`);
+    }
+
     let msgID = arguments.split("--message=");
 
     if (!msgID[1]) return snd.send("You have not entered a message id!");

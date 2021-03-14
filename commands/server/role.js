@@ -193,6 +193,15 @@ Example usage: (PREFIX)role --action=delete`,
       });
     }
 
+    if (!arguments) {
+      return snd.send(`This command allows you to add or remove a self asignable role.
+You can specify a role within the process with either a roleID or a role mention.
+Emojis askes can be custom emojis or regular emojis.
+
+Example usage: ${prefix}role --action=add
+Example usage: ${prefix}role --action=delete`);
+    }
+
     switch (arguments.toLowerCase()) {
       case "--action=add":
         actAdd();

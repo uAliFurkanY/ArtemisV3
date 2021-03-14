@@ -878,8 +878,24 @@ Verification channel: <#${thisGuild.verificationChannel}>`
       });
     }
 
+    if (!arguments) {
+      return snd.send(`This command allows you to setup important server settings.
+This command allows step by step configuration.
+
+Example usage: ${prefix}setup --setup=channels
+Example usage: ${prefix}setup --setup=settings
+Example usage: ${prefix}setup --setup=logs
+Example usage: ${prefix}setup --setup=levels
+Example usage: ${prefix}setup --setup=support
+
+Example usage: ${prefix}setup --view=channels
+Example usage: ${prefix}setup --view=logs
+Example usage: ${prefix}setup --view=levels
+Example usage: ${prefix}setup --view=settings`);
+    }
+
     if (arguments.toLowerCase().includes("--setup=")) {
-      argSplit = arguments.split("--setup=");
+      argSplit = arguments.toLowerCase().split("--setup=");
 
       switch (argSplit[1].toLowerCase()) {
         case "channels":

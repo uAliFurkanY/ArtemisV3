@@ -163,4 +163,9 @@ exports.nodes = async function () {
   setBP = await db.prepare(
     "INSERT OR REPLACE INTO badphrase (gldidtime, gldid, badphrases) VALUES (@gldidtime, @gldid, @badphrases);"
   );
+
+  getCC = await db.prepare("SELECT * FROM cc WHERE gldid = ?");
+  setCC = await db.prepare(
+    "INSERT OR REPLACE INTO cc (gldidtime, gldid, ccname, cclocation, ccaction) VALUES (@gldidtime, @gldid, @ccname, @cclocation, @ccaction);"
+  );
 };

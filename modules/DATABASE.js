@@ -390,4 +390,20 @@ exports.DATABASE = async function (c, client, CONFIG, npm) {
     db.pragma("synchronous = 1");
     db.pragma("journal_mode = wal");
   }
+
+  const cc = await db
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'cc';"
+    )
+    .get();
+  if (!cc["count(*)"]) {
+    await db
+      .prepare(
+        "CREATE TABLE cc (gldidtime TEXT PRIMARY KEY, gldid TEXT, ccname TEXT, cclocation TEXT, ccaction TEXT);"
+      )
+      .run();
+    await db.prepare("CREATE UNIQUE INDEX idx_cc_id ON cc (gldidtime);").run();
+    db.pragma("synchronous = 1");
+    db.pragma("journal_mode = wal");
+  }
 };

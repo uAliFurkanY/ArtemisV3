@@ -69,6 +69,13 @@ module.exports = {
     }
 
     ////////////////////////////////////
+    //Embed message links
+    //We check if the message contains a message link and then process it
+    ////////////////////////////////////
+    LINK = require("../modules/LINK");
+    LINK.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld);
+
+    ////////////////////////////////////
     //Fake AI
     //Or maybe real I don't know, fuck you
     ////////////////////////////////////
@@ -137,6 +144,48 @@ module.exports = {
         ////////////////////////////////////
         LEVEL_UP = require("../modules/LEVEL_UP");
         LEVEL_UP.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld);
+      }
+    }
+
+    ////////////////////////////////////
+    //Custom commands gets parsed here!
+    //We check everything
+    ////////////////////////////////////
+    let pullCC = await db
+      .prepare("SELECT * FROM cc WHERE gldid = ?")
+      .all(gld.id);
+
+    if (pullCC[0]) {
+      for (let i of pullCC) {
+        if (msg.content.includes(i.ccname)) {
+          if (i.cclocation == "START") {
+            if (msg.content.startsWith(i.ccname)) {
+              actionParse = i.ccaction.replace(/\[author]/g, mmbr);
+              if (mntns[0]) {
+                actionParse = actionParse.replace(
+                  /\[mention]/g,
+                  `<@${mntns[0].id}>`
+                );
+              } else {
+                actionParse = actionParse.replace(/\[mention]/g, mmbr);
+              }
+
+              await snd.send(actionParse);
+            }
+          } else {
+            actionParse = i.ccaction.replace(/\[author]/g, mmbr);
+            if (mntns[0]) {
+              actionParse = actionParse.replace(
+                /\[mention]/g,
+                `<@${mntns[0].id}>`
+              );
+            } else {
+              actionParse = actionParse.replace(/\[mention]/g, mmbr);
+            }
+
+            await snd.send(actionParse);
+          }
+        }
       }
     }
 
