@@ -138,436 +138,561 @@ This will add a reaction emote to the message you provided with the message ID, 
 
 
 ## Commands
+
 ### Category: administrative
 #### Command name: `!add`
 Permission level: `2`
 Description:
-_This command allows you to add or remove points from a user or role.
+```sh
+This command allows you to add or remove points from a user or role.
 This command needs parameters.
 
 Example usage: !add --user=userID --points=20
 Example usage: !add --user=@mention --points=20
 Example usage: !add --user=roleID --points=20
 Example usage: !add --user=@roleMention --points=20
-Example usage: !add --user=userID --points=-20_
+Example usage: !add --user=userID --points=-20
+```
 
 #### Command name: `!ban`
 Permission level: `3`
 Description:
-_This command allows you to ban a user with a reason, you can also specify parameters for time.
+```sh
+This command allows you to ban a user with a reason
+ you can also specify parameters for time.
 Acceptable time parameters are: second OR minute OR hour OR day OR month OR year
 Using this command without time parameter results always in a permanent ban.
 
 Example usage: !ban userID --reason=This is a reason --time=10 hour
-Example usage: !ban @mention --reason=This is a reason --time=10 minute_
+Example usage: !ban @mention --reason=This is a reason --time=10 minute
+```
 
 #### Command name: `!case`
 Permission level: `1`
 Description:
-_View, edit, invalidate and lookup cases.
-Cases are created for mutes, warns, kicks and bans.
+```sh
+View
+ edit
+ invalidate and lookup cases.
+Cases are created for mutes
+ warns
+ kicks and bans.
 
 Example usage: !case --view=3
 Example usage: !case --user=@mention
 Example usage: !case --edit=3
-Example usage: !case --invalidate=3_
+Example usage: !case --invalidate=3
+```
 
 #### Command name: `!eval`
 Permission level: `4`
 Description:
-_Evaluate a piece of code.
+```sh
+Evaluate a piece of code.
 This command allows you to execute smaller commands and such from the chatbox.
 
-Example usage: !eval Math.random() * 10_
+Example usage: !eval Math.random() * 10
+```
 
 #### Command name: `!kick`
 Permission level: `2`
 Description:
-_Allows the user to kick another user.
+```sh
+Allows the user to kick another user.
 
 Example usage: !kick @mention --reason=Fill out reason here
-Example usage: !kick userID --reason=Fill out reason here_
+Example usage: !kick userID --reason=Fill out reason here
+```
 
 #### Command name: `!lookup`
 Permission level: `1`
 Description:
-_Lookup user info.
-This command shows you pas nicknames, usernames, wanrings, latest cases and such.
+```sh
+Lookup user info.
+This command shows you pas nicknames
+ usernames
+ wanrings
+ latest cases and such.
 
 Example usage: !lookup --user=@mention
-Example usage: !lookup --user=userID_
+Example usage: !lookup --user=userID
+```
 
 #### Command name: `!massrole`
 Permission level: `2`
 Description:
-_This command allows you to give everyone a role.
+```sh
+This command allows you to give everyone a role.
 Please use a role ID if you are in a public channel.
 
 Example usage: !massrole roleID
-Example usage: !massrole @roleMention_
+Example usage: !massrole @roleMention
+```
 
 #### Command name: `!message`
 Permission level: `1`
 Description:
-_This command allows you to see messages send in your server.
+```sh
+This command allows you to see messages send in your server.
 This command compliments the privacy respecting deletion logs.
 It allows you to see a message that has been deleted/send in channels where you do not expose the user in question.
 
 Example usage: !message --message=messageID
 Example usage: !message --user=@mention
-Example usage: !message --user=userID_
+Example usage: !message --user=userID
+```
 
 #### Command name: `!mute`
 Permission level: `1`
 Description:
-_Mute a specified user.
+```sh
+Mute a specified user.
 Mutes are always permanent without the time flag.
-Acceptable time flags are: second, minute, hour, day, month, year
+Acceptable time flags are: second
+ minute
+ hour
+ day
+ month
+ year
 
 Example usage: !mute @mention --reason=Reason here --time=10 minute
-Example usage: !mute userID --reason=Reason here --time=10 day_
+Example usage: !mute userID --reason=Reason here --time=10 day
+```
 
 #### Command name: `!permissions`
 Permission level: `1`
 Description:
-_This command allows you to see what permissions the bot has in the channel you use the command in.
+```sh
+This command allows you to see what permissions the bot has in the channel you use the command in.
   
-  Example usage: !permissions_
+  Example usage: !permissions
+```
 
 #### Command name: `!permit`
 Permission level: `2`
 Description:
-_Allows the user of this command to ellevate another user permission level for one charge.
+```sh
+Allows the user of this command to ellevate another user permission level for one charge.
 Permission changes with this command are good for one charge.
 You can only bestow a permission level to another use that matches your own.
 
 Example usage: !permit userID --level=2
-Example usage: !permit @mention --level=2_
+Example usage: !permit @mention --level=2
+```
 
 #### Command name: `!phraseban`
 Permission level: `1`
 Description:
-_Allows you to add or remove blocked phrases.
+```sh
+Allows you to add or remove blocked phrases.
 To use this in action you need to have automod enabled!
 
 Example usage: !phraseban --action=add
-Example usage: !phraseban --action=delete_
+Example usage: !phraseban --action=delete
+```
 
 #### Command name: `!preban`
 Permission level: `3`
 Description:
-_Allows the user to ban another user even if they are not in your guild.
+```sh
+Allows the user to ban another user even if they are not in your guild.
 This command leaves no logs and will not remove past messages from the banned user.
 However this command allows you to pre-emptively ban a user.
 
 Example usage: !preban userID
-Example usage: !preban @mention_
+Example usage: !preban @mention
+```
 
 #### Command name: `!purge`
 Permission level: `1`
 Description:
-_Allows you to purge messages in the current channel.
+```sh
+Allows you to purge messages in the current channel.
 The limit decided by the API is 100 messages.
 
 Example usage: !purge 100
-Example usage: !purge 2_
+Example usage: !purge 2
+```
 
 #### Command name: `!steal`
 Permission level: `1`
 Description:
-_Steal an emoji or image and make it an emoji in your own server.
+```sh
+Steal an emoji or image and make it an emoji in your own server.
   
 Example usage: !steal https://example.com/emote.gif --name= EmoteName
-Example usage: !steal <:KEKW:730486351970959501> --name= EmoteName_
+Example usage: !steal <:KEKW:730486351970959501> --name= EmoteName
+```
 
 #### Command name: `!unban`
 Permission level: `3`
 Description:
-_This command allows you to unban a user.
+```sh
+This command allows you to unban a user.
 Unbanning a user is only possible if they are actually banned!
 
 Example usage: !unban userID
-Example usage: !unban @mention_
+Example usage: !unban @mention
+```
 
 #### Command name: `!unmute`
 Permission level: `1`
 Description:
-_This command allows you to unmute a user.
+```sh
+This command allows you to unmute a user.
 Do note that the user has to be muted to actually be able to use this command.
 
 Example usage: !unmute userID
-Example usage: !unmute @mention_
+Example usage: !unmute @mention
+```
 
 #### Command name: `!warn`
 Permission level: `1`
 Description:
-_Warns the target user.
+```sh
+Warns the target user.
 Without the time flag the warn lasts forever.
-Acceptable time flags are: second, minute, hour, day, month, year
+Acceptable time flags are: second
+ minute
+ hour
+ day
+ month
+ year
 
 Example usage: !warn userID --reason=Reason here --time=30 day
-Example usage: !warn @mention --reason=Reason here --time=30 hour_
+Example usage: !warn @mention --reason=Reason here --time=30 hour
+```
 
 #### Command name: `!wordban`
 Permission level: `1`
 Description:
-_Allows you to add or remove blocked words.
+```sh
+Allows you to add or remove blocked words.
 To use this in action you need to have automod enabled!
 
 Example usage: !wordban --action=add
-Example usage: !wordban --action=delete_
-
+Example usage: !wordban --action=delete
+```
 
 ### Category: general
 #### Command name: `!avatar`
 Permission level: `0`
 Description:
-_This command allows you to see your own or another users avatar.
+```sh
+This command allows you to see your own or another users avatar.
 
 Example usage: !avatar
 Example usage: !avatar --user=userID
-Example usage: !avatar --user=@mention_
+Example usage: !avatar --user=@mention
+```
 
 #### Command name: `!command`
 Permission level: `0`
 Description:
-_This command will attempt to display all available commands to your server.
+```sh
+This command will attempt to display all available commands to your server.
   The command may be elaborated upon to ask the bot to explain a certain command in detail.
   
   Example usage: !command ping
-  Example usage: !command_
+  Example usage: !command
+```
 
 #### Command name: `!emoji`
 Permission level: `0`
 Description:
-_Show a big version of an emoji.
+```sh
+Show a big version of an emoji.
   
-Example usage: !emoji <:KEKW:730486351970959501>_
+Example usage: !emoji <:KEKW:730486351970959501>
+```
 
 #### Command name: `!generate`
 Permission level: `4`
 Description:
-_generate_
+```sh
+generate
+```
 
 #### Command name: `!manual`
 Permission level: `0`
 Description:
-_This command is able to fetch Linux manual pages.
+```sh
+This command is able to fetch Linux manual pages.
   
-Example usage: !manual neofetch_
-,
+Example usage: !manual neofetch
+```
+
 #### Command name: `!ping`
 Permission level: `0`
 Description:
-_This command checks the latency between the server, discord and yourself.
+```sh
+This command checks the latency between the server
+ discord and yourself.
   
-Example usage: !ping_
+Example usage: !ping
+```
 
 #### Command name: `!proton`
 Permission level: `0`
 Description:
-_This command allows you to check if a steam game runs via proton on Linux.
+```sh
+This command allows you to check if a steam game runs via proton on Linux.
 *Courtesy of ProtonDB*
 
-Example usage: !proton subnautica_
+Example usage: !proton subnautica
+```
 
 #### Command name: `!remindme`
 Permission level: `0`
 Description:
-_This command allows you to set a reminder.
+```sh
+This command allows you to set a reminder.
 This command needs the time parameter!
-Acceptable time flags are: second, minute, hour, day, month, year
+Acceptable time flags are: second
+ minute
+ hour
+ day
+ month
+ year
 
 Example usage: !remindme This is an example reminder --time=1 hour
-Example usage: !remindme Another example reminder --time=2 day_
+Example usage: !remindme Another example reminder --time=2 day
+```
 
 #### Command name: `!search`
 Permission level: `0`
 Description:
-_Search the internet within Discord!
+```sh
+Search the internet within Discord!
 This command will pull your search query trough StartPage.
 
-Example usage: !search Why do farts smell?_
+Example usage: !search Why do farts smell?
+```
 
 #### Command name: `!translate`
 Permission level: `0`
 Description:
-_Translate any language to English.
+```sh
+Translate any language to English.
 Nearly every language is supported.
 
-Example usage: !translate Hoe gaat het met U?_
+Example usage: !translate Hoe gaat het met U?
+```
 
 #### Command name: `!user`
 Permission level: `0`
 Description:
-_Lookup some basic information about a user.
+```sh
+Lookup some basic information about a user.
 
 Example usage: !user --user=@mention
-Example usage: !user --user=userID_
+Example usage: !user --user=userID
+```
 
 #### Command name: `!uwu`
 Permission level: `0`
 Description:
-_Convert text to the horrifying UWU speech.
+```sh
+Convert text to the horrifying UWU speech.
 
-Example usage: !uwu Welcome to the jungle!_
+Example usage: !uwu Welcome to the jungle!
+```
 
 #### Command name: `!bug`
 Permission level: `0`
 Description:
-_Report a bug in the bot.
+```sh
+Report a bug in the bot.
 Abuse will be punished.
 
-Example usage: !bug_
-
+Example usage: !bug
+```
 
 ### Category: music
 #### Command name: `!np`
 Permission level: `0`
 Description:
-_This command shows you the current song that is playing.
+```sh
+This command shows you the current song that is playing.
 Music needs to be playing to be able to use this command.
 
-Example usage: !np_
+Example usage: !np
+```
 
 #### Command name: `!pause`
 Permission level: `0`
 Description:
-_This command allows you to pause the music player.
+```sh
+This command allows you to pause the music player.
 Music needs to be playing for you to use this command.
 
-Example usage: !pause_
+Example usage: !pause
+```
 
 #### Command name: `!play`
 Permission level: `0`
 Description:
-_Play a song.
+```sh
+Play a song.
 You need to be in a voice channel to use this command.
 
 Example usage: !play Never gonna give you up
-Example usage: !play https://www.youtube.com/watch?v=dQw4w9WgXcQ_
+Example usage: !play https://www.youtube.com/watch?v=dQw4w9WgXcQ
+```
 
 #### Command name: `!queue`
 Permission level: `0`
 Description:
-_This command allows you to view the music queue.
+```sh
+This command allows you to view the music queue.
 Music has to be playing for you to be able to use this command.
 
-Example usage: !queue_
+Example usage: !queue
+```
 
 #### Command name: `!resume`
 Permission level: `0`
 Description:
-_This command allows you to resume a paused music player.
+```sh
+This command allows you to resume a paused music player.
 Music has to be playing AND paused for you to use this command.
 
-Example usage: !resume_
+Example usage: !resume
+```
 
 #### Command name: `!skip`
 Permission level: `0`
 Description:
-_This command allows you to skip songs in the queue.
+```sh
+This command allows you to skip songs in the queue.
 Compare the number within !queue to the song you want to skip.
 
 Example usage: !skip
-Example usage: !skip 4_
+Example usage: !skip 4
+```
 
 #### Command name: `!speen`
 Permission level: `0`
 Description:
-_When there is no music playing, trigger a vinesauce spin.
+```sh
+When there is no music playing
+ trigger a vinesauce spin.
 This is purely for fun and all rights belong to vinny.
 
-Example usage: !speen_
+Example usage: !speen
+```
 
 #### Command name: `!stop`
 Permission level: `0`
 Description:
-_This command allows you to stop the music player.
+```sh
+This command allows you to stop the music player.
 You need to be inside a voice channel AND there has to be music playing for you to be able to use this command.
 
-Example usage: !stop_
+Example usage: !stop
+```
 
 #### Command name: `!vol`
 Permission level: `0`
 Description:
-_This command allows you to change the volume of the music player.
-Volume changes persist trough music changes, but only if the bot has not left the voice channel.
+```sh
+This command allows you to change the volume of the music player.
+Volume changes persist trough music changes
+ but only if the bot has not left the voice channel.
 
 Example usage: !vol 10
 Example usage: !vol 50
-Example usage: !vol 100_
-
+Example usage: !vol 100
+```
 
 ### Category: server
 #### Command name: `!board`
 Permission level: `0`
 Description:
-_This command will show you the top 10 points holders.
+```sh
+This command will show you the top 10 points holders.
   
-Example usage: !board_
+Example usage: !board
+```
 
 #### Command name: `!cc`
 Permission level: `2`
 Description:
-_Custom command creation and deletion.
-This command allows you to make or delete a custom command, commands made like this are fairly simple.
+```sh
+Custom command creation and deletion.
+This command allows you to make or delete a custom command
+ commands made like this are fairly simple.
 
 Example usage: !cc --action=create
 Example usage: !cc --action=view
-Example usage: !cc --action=delete_
+Example usage: !cc --action=delete
+```
 
 #### Command name: `!level`
 Permission level: `0`
 Description:
-_This command allows you to show your own or another user level and points.
+```sh
+This command allows you to show your own or another user level and points.
 This command also shows the amount of warning points and received bonusses.
 
 Example usage: !level --user=userID
-Example usage: !level --user=@mention_
+Example usage: !level --user=@mention
+```
 
 #### Command name: `!migrate`
 Permission level: `4`
 Description:
-_f_
+```sh
+f
+```
 
 #### Command name: `!numbers`
 Permission level: `0`
 Description:
-_This command shows the member sizes of the self asignable roles.
+```sh
+This command shows the member sizes of the self asignable roles.
 
-Example usage: !numbers_
+Example usage: !numbers
+```
 
 #### Command name: `!react`
 Permission level: `1`
 Description:
-_This command allows you to add a reaction to a message within the channel you use this command in.
-You have to use the emoji itself to use this command, both regular and custom emojis are supported.
+```sh
+This command allows you to add a reaction to a message within the channel you use this command in.
+You have to use the emoji itself to use this command
+ both regular and custom emojis are supported.
 
-Example usage: !react 👍 <:KEKW:730486351970959501> --message=messageID_
+Example usage: !react 👍 <:KEKW:730486351970959501> --message=messageID
+```
 
 #### Command name: `!role`
 Permission level: `2`
 Description:
-_This command allows you to add or remove a self asignable role.
+```sh
+This command allows you to add or remove a self asignable role.
 You can specify a role within the process with either a roleID or a role mention.
 Emojis askes can be custom emojis or regular emojis.
 
 Example usage: !role --action=add
-Example usage: !role --action=delete_
+Example usage: !role --action=delete
+```
 
 #### Command name: `!say`
 Permission level: `1`
 Description:
-_Make the bot say stuff within other channels.
+```sh
+Make the bot say stuff within other channels.
 
 Example usage: !say Hello I am a bot! --channel=ChannelID
-Example usage: !say Me so hungry. --channel= ChannelMention_
+Example usage: !say Me so hungry. --channel= ChannelMention
+```
 
 #### Command name: `!setup`
 Permission level: `3`
 Description:
-_This command allows you to setup important server settings.
+```sh
+This command allows you to setup important server settings.
 This command allows step by step configuration.
 
 Example usage: !setup --setup=channels
@@ -579,62 +704,68 @@ Example usage: !setup --setup=support
 Example usage: !setup --view=channels
 Example usage: !setup --view=logs
 Example usage: !setup --view=levels
-Example usage: !setup --view=settings_
+Example usage: !setup --view=settings
+```
 
 #### Command name: `!topic`
 Permission level: `1`
 Description:
-_This command allows you to set a topic or create/view them.
+```sh
+This command allows you to set a topic or create/view them.
 Without parameters this command will pull a random topic and applies it.
 
 Example usage: !topic
 Example usage: !topic Example Topic text --action=create
-Example usage: !topic --action=view_
-
+Example usage: !topic --action=view
+```
 
 ### Category: stream
 #### Command name: `!streamer`
 Permission level: `2`
 Description:
-_This command allows you to add or remove streamers from the stream list.
+```sh
+This command allows you to add or remove streamers from the stream list.
 For this to be in action you need to have setup a streaming channel.
 
-Example usage: !streamer StreamerName_
-
+Example usage: !streamer StreamerName
+```
 
 ### Category: support
 #### Command name: `!done`
 Permission level: `0`
 Description:
-_Close an in-use support session.
+```sh
+Close an in-use support session.
 You can only use this command within an in-use support session.
 
-Example usage: !done_
+Example usage: !done
+```
 
 #### Command name: `!help`
 Permission level: `0`
 Description:
-_This command allows you to create a support session.
+```sh
+This command allows you to create a support session.
 The channel this command is used in needs to be a designated support creation channel as setup in !setup --setup=support
 
-Example usage: !help_
+Example usage: !help
+```
 
 #### Command name: `!open`
 Permission level: `0`
 Description:
-_This command allows you to reopen a previous support ticket.
+```sh
+This command allows you to reopen a previous support ticket.
 This command is to be used in a designated support creation channel.
 
-Example usage: !open 20_
+Example usage: !open 20
+```
 
 #### Command name: `!view`
 Permission level: `0`
 Description:
-_This command allows you to view a previous support ticket.
+```sh
+This command allows you to view a previous support ticket.
   
-Example usage: !view 10_
-
-
-
-
-
+Example usage: !view 10
+```
