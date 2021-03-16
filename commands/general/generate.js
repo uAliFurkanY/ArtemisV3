@@ -56,7 +56,7 @@ module.exports = {
         `
 #### Command name: \`${await CONFIG.PREFIX("PREFIX", msg.guild_id)}${com.name}\`
 Permission level: \`${com.permission}\`
-Description:\n_${com.explain.replace(/\(PREFIX\)/g, "!")}_\n`
+Description:\n\`\`\`sh\n${com.explain.replace(/\(PREFIX\)/g, "!")}\n\`\`\``
       );
     });
     let doneCats = [];

@@ -373,43 +373,47 @@ module.exports = {
           CONFIG.CONFIG("TWITCH_SECRET"),
           SCOPE
         ).then(async (result) => {
-          let access_token = result.access_token;
+          try {
+            let access_token = result.access_token;
 
-          let user = await Twitch.getUserInfo(
-            access_token,
-            await CONFIG.CONFIG("TWITCH_ID"),
-            streamerData.streamer
-          );
+            let user = await Twitch.getUserInfo(
+              access_token,
+              await CONFIG.CONFIG("TWITCH_ID"),
+              streamerData.streamer
+            );
 
-          if (!user) return;
-          if (!user.data) return;
-          if (!user.data[0]) return;
+            if (!user) return;
+            if (!user.data) return;
+            if (!user.data[0]) return;
 
-          let user_id = user.data[0].id;
+            let user_id = user.data[0].id;
 
-          let stream_info = await Twitch.getStream(
-            access_token,
-            await CONFIG.CONFIG("TWITCH_ID"),
-            user_id
-          );
+            let stream_info = await Twitch.getStream(
+              access_token,
+              await CONFIG.CONFIG("TWITCH_ID"),
+              user_id
+            );
 
-          if (!stream_info.data) return;
+            if (!stream_info.data) return;
 
-          if (!stream_info.data[0]) {
-            var dat = [streamerData.streamer, streamerData.guild, "OFFLINE"];
-          } else {
-            var dat = [
-              streamerData.streamer,
-              streamerData.guild,
-              stream_info.data[0].user_name,
-              stream_info.data[0].game_id,
-              stream_info.data[0].title,
-              stream_info.data[0].viewer_count,
-              stream_info.data[0].thumbnail_url,
-            ];
+            if (!stream_info.data[0]) {
+              var dat = [streamerData.streamer, streamerData.guild, "OFFLINE"];
+            } else {
+              var dat = [
+                streamerData.streamer,
+                streamerData.guild,
+                stream_info.data[0].user_name,
+                stream_info.data[0].game_id,
+                stream_info.data[0].title,
+                stream_info.data[0].viewer_count,
+                stream_info.data[0].thumbnail_url,
+              ];
+            }
+
+            twitchEmitter.emit("event", dat);
+          } catch (err) {
+            console.log("");
           }
-
-          twitchEmitter.emit("event", dat);
         });
       });
 
