@@ -249,11 +249,7 @@ Description:
 Mute a specified user.
 Mutes are always permanent without the time flag.
 Acceptable time flags are: second
- minute
- hour
- day
- month
- year
+ minute, hour, day, month, year
 
 Example usage: !mute @mention --reason=Reason here --time=10 minute
 Example usage: !mute userID --reason=Reason here --time=10 day
@@ -449,11 +445,7 @@ Description:
 This command allows you to set a reminder.
 This command needs the time parameter!
 Acceptable time flags are: second
- minute
- hour
- day
- month
- year
+ minute, hour, day, month, year
 
 Example usage: !remindme This is an example reminder --time=1 hour
 Example usage: !remindme Another example reminder --time=2 day
