@@ -57,6 +57,7 @@ module.exports = {
           dbump: 0,
           dlmbump: 0,
           like: 0,
+          dotbump: 0,
         };
         await setBumpRecord.run(bumpPoints);
       }
@@ -65,6 +66,7 @@ module.exports = {
       if (bumpWord == "!like") bumpPoints.like++;
       if (bumpWord == "dlm!bump") bumpPoints.dlmbump++;
       if (bumpWord == "!d bump") bumpPoints.dbump++;
+      if (bumpWord == ".bump") bumpPoints.dotbump++;
 
       await setBumpRecord.run(bumpPoints);
     }
@@ -93,6 +95,13 @@ module.exports = {
           "I think you just bumped, want me to set a reminder?\nType `no` to not do that, type anything else to set the reminder!"
         );
         return bumping("!like", "4 hour");
+        break;
+
+      case ".bump":
+        await snd.send(
+          "I think you just bumped, want me to set a reminder?\nType `no` to not do that, type anything else to set the reminder!"
+        );
+        return bumping(".bump", "1 hour");
         break;
     }
   },

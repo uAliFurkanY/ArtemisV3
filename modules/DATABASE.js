@@ -251,7 +251,7 @@ exports.DATABASE = async function (c, client, CONFIG, npm) {
   if (!bumprecord["count(*)"]) {
     await db
       .prepare(
-        "CREATE TABLE bumprecord (GuildUser TEXT PRIMARY KEY, user TEXT, guild TEXT, bump INTEGER, dbump INTEGER, dlmbump INTEGER, like INTEGER);"
+        "CREATE TABLE bumprecord (GuildUser TEXT PRIMARY KEY, user TEXT, guild TEXT, bump INTEGER, dbump INTEGER, dlmbump INTEGER, like INTEGER, dotbump INTEGER);"
       )
       .run();
     await db

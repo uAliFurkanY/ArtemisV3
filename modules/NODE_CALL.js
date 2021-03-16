@@ -120,7 +120,7 @@ exports.nodes = async function () {
     "SELECT * FROM bumprecord WHERE user = ? AND guild = ?"
   );
   setBumpRecord = await db.prepare(
-    "INSERT OR REPLACE INTO bumprecord (GuildUser, user, guild, bump, dbump, dlmbump, like) VALUES (@GuildUser, @user, @guild, @bump, @dbump, @dlmbump, @like);"
+    "INSERT OR REPLACE INTO bumprecord (GuildUser, user, guild, bump, dbump, dlmbump, like, dotbump) VALUES (@GuildUser, @user, @guild, @bump, @dbump, @dlmbump, @like, @dotbump);"
   );
 
   getSupportChannels = await db.prepare(

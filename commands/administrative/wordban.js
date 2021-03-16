@@ -50,7 +50,7 @@ Example usage: (PREFIX)wordban --action=delete`,
 
         for (let i of splitter) {
           addWord = await {
-            gldidtime: moment().format("x"),
+            gldidtime: `${gld.id}${moment().format("x")}${Math.random() * 100}`,
             gldid: gld.id,
             badwords: i.toLowerCase(),
           };

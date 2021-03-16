@@ -95,7 +95,7 @@ module.exports = {
     //Bump triggers
     //Will have to be expanded upon
     ////////////////////////////////////
-    let bumpArray = ["!bump", "!d bump", "dlm!bump", "!like"];
+    let bumpArray = ["!bump", "!d bump", "dlm!bump", "!like", ".bump"];
 
     await bumpArray.forEach((b) => {
       if (msg.content.toLowerCase() == b) {

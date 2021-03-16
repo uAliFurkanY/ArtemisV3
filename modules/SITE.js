@@ -187,7 +187,7 @@ module.exports = {
                 let bumpGet = getBumpRecord.get(i.user, guild.id);
 
                 if (bumpGet) {
-                  bumptext = `<h2>Bump record</h2>!bump: ${bumpGet.bump}<br>!d bump: ${bumpGet.dbump}<br>dlm!bump: ${bumpGet.dlmbump}<br>!like: ${bumpGet.like}<br>`;
+                  bumptext = `<h2>Bump record</h2>!bump: ${bumpGet.bump}<br>!d bump: ${bumpGet.dbump}<br>dlm!bump: ${bumpGet.dlmbump}<br>!like: ${bumpGet.like}<br>.bump: ${bumpGet.dotbump}<br>`;
                 } else {
                   bumptext = "";
                 }
@@ -198,7 +198,7 @@ module.exports = {
    <br>[${countMem}] ${memGet.user.username}#${memGet.user.discriminator}<br>
   <span class="tooltiptext2" style="z-index: 999; min-height: 200px; background: url('https://cdn.discordapp.com/avatars/${memGet.user.id}/${memGet.user.avatar}') no-repeat top right, #444444;">
     <h2>Basic info</h2>Net Worth: ${curr} ${i.points}<br>
-      Level: ${i.level}<br>${bumptext}<br></span></div><br>`);
+      Level: ${i.level}<br>Bonuses received: ${i.bonus}<br>${bumptext}<br></span></div><br>`);
               }
             }
 
