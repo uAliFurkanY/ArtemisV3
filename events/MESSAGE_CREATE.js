@@ -79,11 +79,11 @@ module.exports = {
     //Fake AI
     //Or maybe real I don't know, fuck you
     ////////////////////////////////////
-    if (msg.content.toLowerCase().startsWith("hecate")) {
+    if (msg.content.toLowerCase().startsWith("artemis")) {
       let artSet = await getSettings.get(msg.guild_id);
       if (artSet) {
         if (artSet.artemisTalks == "ON") {
-          let contextMsg = msg.content.slice(7);
+          let contextMsg = msg.content.slice(8);
           cleverbot(contextMsg).then(async (response) => {
             await snd.send(response);
           });

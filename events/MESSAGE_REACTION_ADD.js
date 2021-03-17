@@ -12,6 +12,8 @@ module.exports = {
     const mmbr = await gld.members.cache.get(msg.user_id);
     if (!mmbr) return;
 
+    if (mmbr.user.bot) return;
+
     ////////////////////////////////////
     //Reaction role module
     //Gets triggered within a reaction channel
