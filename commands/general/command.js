@@ -114,7 +114,7 @@ module.exports = {
       Command explanation:\n\`\`\`
 ${comGet.explain.replace(
   /\(PREFIX\)/g,
-  `${await CONFIG.PREFIX("PREFIX", msg.guild_id)}$`
+  `${await CONFIG.PREFIX("PREFIX", msg.guild_id)}`
 )}\`\`\`
 `);
     }

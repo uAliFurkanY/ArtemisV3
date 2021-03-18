@@ -407,6 +407,7 @@ module.exports = {
                 stream_info.data[0].title,
                 stream_info.data[0].viewer_count,
                 stream_info.data[0].thumbnail_url,
+                user.data[0].profile_image_url,
               ];
             }
 

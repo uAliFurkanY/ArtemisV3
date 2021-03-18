@@ -58,7 +58,8 @@ Example usage: (PREFIX)view 10`,
     if (openCase.solution)
       embed.addField("Solution:", `${openCase.solution.slice(0, 1000)}`);
     if (openCase.solvedby) embed.addField("Solved by:", `${openCase.solvedby}`);
-    if (openCase.attachments) embed.setImage(`${openCase.attachments}`);
+    if (openCase.attachments)
+      embed.addField("Attachment", `${openCase.attachments}`);
     await snd.send(embed);
   },
 };

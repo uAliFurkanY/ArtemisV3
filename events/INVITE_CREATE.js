@@ -9,6 +9,8 @@ module.exports = {
     const gld = await client.guilds.cache.get(msg.guild_id);
     if (!gld) return;
 
+    if (!msg.inviter) return;
+
     let embed = new Discord.MessageEmbed()
       .setColor("GOLD")
       .setDescription("New Invite created")

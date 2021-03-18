@@ -17,6 +17,7 @@ module.exports = {
     ////////////////////////////////////
     guildDB = await getGuild.get(dat[1]);
     if (!guildDB) return;
+    const streamerChannel = guildDB.streamChannel;
 
     ////////////////////////////////////
     //The (at)here ping in handled in settings
@@ -38,7 +39,7 @@ module.exports = {
     //Easy send function
     //This is why we needed the guild get
     ////////////////////////////////////
-    snd = await client.channels.cache.get(guildDB.streamChannel);
+    const snd = await client.channels.cache.get(streamerChannel);
     if (!snd) return;
 
     ////////////////////////////////////
@@ -73,6 +74,7 @@ module.exports = {
             await CONFIG.CONFIG("TWITCH_ID"),
             dat[3]
           );
+          if (!stream_info.data[0]) return;
           let gameName = stream_info.data[0].name;
           let gameImg = await stream_info.data[0].box_art_url
             .replace("{width}", "500")
@@ -87,7 +89,7 @@ module.exports = {
           let streamInfo = dat[4];
           const embed = new Discord.MessageEmbed()
             .setAuthor(streamName, gameImg)
-            .setThumbnail(gameImg)
+            .setThumbnail(`${dat[7]}`)
             .setTitle(`${streamName} is streaming ${gameName}!`)
             .setColor(`RANDOM`)
             .setURL(streamUrl)
