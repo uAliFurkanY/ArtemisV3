@@ -165,4 +165,4 @@ client.on("raw", async (c) => {
 //Here we login to get verified
 //We call this code from a seperate file.
 ////////////////////////////////////
-client.login(CONFIG.CONFIG("LOGIN"));
+client.login(CONFIG.CONFIG.LOGIN);

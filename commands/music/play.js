@@ -145,7 +145,7 @@ Example usage: ${prefix}play https://www.youtube.com/watch?v=dQw4w9WgXcQ`);
     } else {
       var opts = {
         maxResults: 1,
-        key: await CONFIG.CONFIG.ytkey,
+        key: CONFIG.CONFIG.ytkey,
       };
 
       search(arguments, opts, async function (err, results) {

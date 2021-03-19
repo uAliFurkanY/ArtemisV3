@@ -238,9 +238,9 @@ module.exports = {
     //SSL and such
     //needs proper certificates
     ////////////////////////////////////
-    const privateKey = fs.readFileSync(await CONFIG.CONFIG.privkey, "utf8");
-    const certificate = fs.readFileSync(await CONFIG.CONFIG.cert, "utf8");
-    const ca = fs.readFileSync(await CONFIG.CONFIG.chain, "utf8");
+    const privateKey = fs.readFileSync(CONFIG.CONFIG.privkey, "utf8");
+    const certificate = fs.readFileSync(CONFIG.CONFIG.cert, "utf8");
+    const ca = fs.readFileSync(CONFIG.CONFIG.chain, "utf8");
 
     const credentials = {
       key: privateKey,

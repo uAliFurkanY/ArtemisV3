@@ -49,7 +49,7 @@ Example usage: (PREFIX)streamer StreamerName`,
 
       let user = await Twitch.getUserInfo(
         access_token,
-        await CONFIG.CONFIG.TWITCH_ID,
+        CONFIG.CONFIG.TWITCH_ID,
         arguments.toLowerCase()
       );
       if (!user) return (check = "false");

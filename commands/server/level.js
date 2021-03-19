@@ -76,7 +76,7 @@ Example usage: (PREFIX)level --user=@mention`,
         .addField("Level", `${await worth.level}`, true)
         .addField(
           "Worth",
-          `${await CONFIG.CONFIG.CURRENCY}${await worth.points.toLocaleString()}`,
+          `${CONFIG.CONFIG.CURRENCY}${await worth.points.toLocaleString()}`,
           true
         )
         .addField("Next level", `${math3.toLocaleString()} messages`, true);

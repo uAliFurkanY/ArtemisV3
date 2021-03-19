@@ -111,7 +111,7 @@ Example usage: (PREFIX)add --user=userID --points=-20`,
       });
 
       return snd.send(
-        `I have added \`${await CONFIG.CONFIG.CURRENCY}${checkPoint.toLocaleString()}\` worth to role \`${roleCheck.name}\``
+        `I have added \`${CONFIG.CONFIG.CURRENCY}${checkPoint.toLocaleString()}\` worth to role \`${roleCheck.name}\``
       );
     } else {
       pointID = await mmbr2.id;
@@ -126,11 +126,11 @@ Example usage: (PREFIX)add --user=userID --points=-20`,
       await setScore.run(score);
 
       return snd.send(
-        `I have added \`${await CONFIG.CONFIG.CURRENCY}${checkPoint.toLocaleString()}\` worth to user \`${
+        `I have added \`${CONFIG.CONFIG.CURRENCY}${checkPoint.toLocaleString()}\` worth to user \`${
           mmbr2.user.username
         }#${
           mmbr2.user.discriminator
-        }\`.\nTheir new worth is \`${await CONFIG.CONFIG.CURRENCY}${score.points.toLocaleString()}\`!`
+        }\`.\nTheir new worth is \`${CONFIG.CONFIG.CURRENCY}${score.points.toLocaleString()}\`!`
       );
     }
 

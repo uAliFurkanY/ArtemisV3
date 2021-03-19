@@ -71,7 +71,7 @@ module.exports = {
         ).then(async (result) => {
           let stream_info = await Twitch.getGames(
             result.access_token,
-            await CONFIG.CONFIG.TWITCH_ID,
+            CONFIG.CONFIG.TWITCH_ID,
             dat[3]
           );
           if (!stream_info.data[0]) return;
