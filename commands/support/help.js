@@ -127,8 +127,19 @@ Example usage: (PREFIX)help`,
               }
 
               try {
+                const fruits = [
+                  "apple",
+                  "banana",
+                  "cherry",
+                  "orange",
+                  "grape",
+                  "strawberry",
+                ];
+
+                const select = await fruits[~~(Math.random() * fruits.length)];
+
                 await gld.channels
-                  .create(`🔔case-${numGet.caseid}`, {
+                  .create(`🔔${select}-${numGet.caseid}`, {
                     type: "text",
                     permissionOverwrites: [
                       {

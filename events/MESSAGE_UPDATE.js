@@ -8,6 +8,7 @@ module.exports = {
     //We fetch the old message first
     //And then we try to do stuff with it
     ////////////////////////////////////
+    if (!client.channels.cache.get(c.d.channel_id)) return;
     let msg = await client.channels.cache
       .get(c.d.channel_id)
       .messages.fetch(c.d.id);

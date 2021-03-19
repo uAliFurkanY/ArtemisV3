@@ -55,19 +55,24 @@ module.exports = {
     //AutoMod Trigger
     //We check if it's enabled
     ////////////////////////////////////
-    let autoModCheck = await getSettings.get(msg.guild_id);
+    if (
+      mmbr.permissions.has("KICK_MEMBERS") ||
+      mmbr.permissions.has("BAN_MEMBERS")
+    ) {
+    } else {
+      let autoModCheck = await getSettings.get(msg.guild_id);
 
-    if (msg.content) {
-      if (autoModCheck) {
-        if (autoModCheck.autoMod) {
-          if (autoModCheck.autoMod == "ON") {
-            AUTO = require("../modules/AUTOMOD");
-            AUTO.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld);
+      if (msg.content) {
+        if (autoModCheck) {
+          if (autoModCheck.autoMod) {
+            if (autoModCheck.autoMod == "ON") {
+              AUTO = require("../modules/AUTOMOD");
+              AUTO.eventTrigger(client, CONFIG, npm, mmbr, msg, snd, gld);
+            }
           }
         }
       }
     }
-
     ////////////////////////////////////
     //Embed message links
     //We check if the message contains a message link and then process it
