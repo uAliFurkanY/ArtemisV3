@@ -24,7 +24,7 @@ module.exports = {
     //Defining the arguments here
     //Splits can happen later if needed
     ////////////////////////////////////
-    const prefix = await CONFIG.PREFIX("PREFIX", msg.guild_id);
+    const prefix = await CONFIG.PREFIX(msg.guild_id);
     const comName = module.exports.name;
     const arguments = await msg.content.slice(
       prefix.length + comName.length + 1
@@ -54,7 +54,7 @@ module.exports = {
       let usag = getUsage.get(com.name);
       await cats[com.category].push(
         `
-#### Command name: \`${await CONFIG.PREFIX("PREFIX", msg.guild_id)}${com.name}\`
+#### Command name: \`${await CONFIG.PREFIX(msg.guild_id)}${com.name}\`
 Permission level: \`${com.permission}\`
 Description:\n\`\`\`sh\n${com.explain.replace(/\(PREFIX\)/g, "!")}\n\`\`\``
       );

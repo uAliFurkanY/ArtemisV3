@@ -29,7 +29,7 @@ Example usage: (PREFIX)topic --action=view`,
     //Defining the arguments here
     //Splits can happen later if needed
     ////////////////////////////////////
-    const prefix = await CONFIG.PREFIX("PREFIX", msg.guild_id);
+    const prefix = await CONFIG.PREFIX(msg.guild_id);
     const comName = module.exports.name;
     const arguments = await msg.content.slice(
       prefix.length + comName.length + 1
