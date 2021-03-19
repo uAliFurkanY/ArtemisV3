@@ -163,7 +163,7 @@ module.exports = {
     let xz = await client.guilds.cache;
     xz.forEach((guild) => {
       let yz = getGuild.get(guild.id);
-      let curr = CONFIG.CONFIG("CURRENCY");
+      let curr = CONFIG.CONFIG.CURRENCY;
 
       if (yz) {
         app.get(`/leaderboard-${guild.id}`, async (req, res) => {
@@ -238,9 +238,9 @@ module.exports = {
     //SSL and such
     //needs proper certificates
     ////////////////////////////////////
-    const privateKey = fs.readFileSync(await CONFIG.CONFIG("privkey"), "utf8");
-    const certificate = fs.readFileSync(await CONFIG.CONFIG("cert"), "utf8");
-    const ca = fs.readFileSync(await CONFIG.CONFIG("chain"), "utf8");
+    const privateKey = fs.readFileSync(await CONFIG.CONFIG.privkey, "utf8");
+    const certificate = fs.readFileSync(await CONFIG.CONFIG.cert, "utf8");
+    const ca = fs.readFileSync(await CONFIG.CONFIG.chain, "utf8");
 
     const credentials = {
       key: privateKey,

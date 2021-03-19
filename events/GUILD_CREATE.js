@@ -110,7 +110,7 @@ module.exports = {
 
     try {
       await client.channels.cache
-        .get(await CONFIG.CONFIG("MAIN_LOG"))
+        .get(await CONFIG.MAIN_LOG)
         .send({ embed });
     } catch (err) {
       console.log("");

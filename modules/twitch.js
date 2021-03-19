@@ -65,13 +65,13 @@ module.exports = {
         setStream.run(StreamerCheck);
         const SCOPE = "analytics:read:games";
         Twitch.getToken(
-          CONFIG.CONFIG("TWITCH_ID"),
-          CONFIG.CONFIG("TWITCH_SECRET"),
+          CONFIG.CONFIG.TWITCH_ID,
+          CONFIG.CONFIG.TWITCH_SECRET,
           SCOPE
         ).then(async (result) => {
           let stream_info = await Twitch.getGames(
             result.access_token,
-            await CONFIG.CONFIG("TWITCH_ID"),
+            await CONFIG.CONFIG.TWITCH_ID,
             dat[3]
           );
           if (!stream_info.data[0]) return;

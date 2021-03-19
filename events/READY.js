@@ -127,7 +127,7 @@ module.exports = {
 
     try {
       await client.channels.cache
-        .get(await CONFIG.CONFIG("MAIN_LOG"))
+        .get(await CONFIG.CONFIG.MAIN_LOG)
         .send({ embed });
     } catch (err) {
       console.log(
@@ -369,8 +369,8 @@ module.exports = {
         const SCOPE = "user:read:email";
 
         Twitch.getToken(
-          CONFIG.CONFIG("TWITCH_ID"),
-          CONFIG.CONFIG("TWITCH_SECRET"),
+          CONFIG.CONFIG.TWITCH_ID,
+          CONFIG.CONFIG.TWITCH_SECRET,
           SCOPE
         ).then(async (result) => {
           try {
@@ -378,7 +378,7 @@ module.exports = {
 
             let user = await Twitch.getUserInfo(
               access_token,
-              await CONFIG.CONFIG("TWITCH_ID"),
+              await CONFIG.CONFIG.TWITCH_ID,
               streamerData.streamer
             );
 
@@ -390,7 +390,7 @@ module.exports = {
 
             let stream_info = await Twitch.getStream(
               access_token,
-              await CONFIG.CONFIG("TWITCH_ID"),
+              await CONFIG.CONFIG.TWITCH_ID,
               user_id
             );
 

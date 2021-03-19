@@ -46,7 +46,7 @@ Example usage: (PREFIX)translate Hoe gaat het met U?`,
       headers: {
         "content-type": "application/x-www-form-urlencoded",
         "accept-encoding": "application/gzip",
-        "x-rapidapi-key": await CONFIG.CONFIG("TRANSLATE_TOKEN"),
+        "x-rapidapi-key": CONFIG.CONFIG.TRANSLATE_TOKEN,
         "x-rapidapi-host": "google-translate1.p.rapidapi.com",
         useQueryString: true,
       },

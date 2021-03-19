@@ -34,9 +34,7 @@ module.exports = {
     setTimeout(async () => {
       if (thankedUsers.length > 0) {
         snd.send(
-          `${mmbr} gifted ${thankedUsers.join(", ")} ${await CONFIG.CONFIG(
-            "CURRENCY"
-          )}${bonusPoint}!`
+          `${mmbr} gifted ${thankedUsers.join(", ")} ${await CONFIG.CONFIG.CURRENCY}${bonusPoint}!`
         );
       }
     }, 500 * mntns.length);

@@ -106,19 +106,19 @@ module.exports = {
 					if (mmbr.permissions.has("MUTE_MEMBERS")) perm = "YES";
 					if (mmbr.permissions.has("KICK_MEMBERS")) perm = "YES";
 					if (mmbr.permissions.has("BAN_MEMBERS")) perm = "YES";
-					if (mmbr.id == (await CONFIG.CONFIG("OWNER"))) perm = "YES";
+					if (mmbr.id == (await CONFIG.CONFIG.OWNER)) perm = "YES";
 					break;
 				case "2": //Kick permissions
 					if (mmbr.permissions.has("KICK_MEMBERS")) perm = "YES";
 					if (mmbr.permissions.has("BAN_MEMBERS")) perm = "YES";
-					if (mmbr.id == (await CONFIG.CONFIG("OWNER"))) perm = "YES";
+					if (mmbr.id == (await CONFIG.CONFIG.OWNER)) perm = "YES";
 					break;
 				case "3": //Ban permissions
 					if (mmbr.permissions.has("BAN_MEMBERS")) perm = "YES";
-					if (mmbr.id == (await CONFIG.CONFIG("OWNER"))) perm = "YES";
+					if (mmbr.id == (await CONFIG.CONFIG.OWNER)) perm = "YES";
 					break;
 				case "4": //Bot Owner
-					if (mmbr.id == (await CONFIG.CONFIG("OWNER"))) perm = "YES";
+					if (mmbr.id == (await CONFIG.CONFIG.OWNER)) perm = "YES";
 					break;
 			}
 

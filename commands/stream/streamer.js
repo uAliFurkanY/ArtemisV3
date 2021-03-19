@@ -41,15 +41,15 @@ Example usage: (PREFIX)streamer StreamerName`,
     const SCOPE = "user:read:email";
 
     await Twitch.getToken(
-      CONFIG.CONFIG("TWITCH_ID"),
-      CONFIG.CONFIG("TWITCH_SECRET"),
+      CONFIG.CONFIG.TWITCH_ID,
+      CONFIG.CONFIG.TWITCH_SECRET,
       SCOPE
     ).then(async (result) => {
       let access_token = result.access_token;
 
       let user = await Twitch.getUserInfo(
         access_token,
-        await CONFIG.CONFIG("TWITCH_ID"),
+        await CONFIG.CONFIG.TWITCH_ID,
         arguments.toLowerCase()
       );
       if (!user) return (check = "false");

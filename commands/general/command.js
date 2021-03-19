@@ -45,7 +45,7 @@ module.exports = {
       if (mmbr.permissions.has("MUTE_MEMBERS")) perm = "1";
       if (mmbr.permissions.has("KICK_MEMBERS")) perm = "2";
       if (mmbr.permissions.has("BAN_MEMBERS")) perm = "3";
-      if (mmbr.id == CONFIG.CONFIG("OWNER")) perm = "4";
+      if (mmbr.id == CONFIG.CONFIG.OWNER) perm = "4";
 
       return perm;
     }

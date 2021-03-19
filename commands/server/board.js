@@ -60,9 +60,7 @@ Example usage: (PREFIX)board`,
 
       embed.addField(
         `**[${count}]** ${usr.user.username}#${usr.user.discriminator}`,
-        `Level: **${m.level}** | Worth: **${CONFIG.CONFIG(
-          "CURRENCY"
-        )}${m.points.toLocaleString()}**`
+        `Level: **${m.level}** | Worth: **${CONFIG.CONFIG.CURRENCY}${m.points.toLocaleString()}**`
       );
     });
 

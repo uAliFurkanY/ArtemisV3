@@ -61,19 +61,19 @@ Example usage: (PREFIX)permit @mention --level=2`,
         if (await mmbr.permissions.has("MUTE_MEMBERS")) perm = "YES";
         if (await mmbr.permissions.has("KICK_MEMBERS")) perm = "YES";
         if (await mmbr.permissions.has("BAN_MEMBERS")) perm = "YES";
-        if (mmbr.id == (await CONFIG.CONFIG("OWNER"))) perm = "YES";
+        if (mmbr.id == (CONFIG.CONFIG.OWNER)) perm = "YES";
         break;
       case "2": //Kick permissions
         if (await mmbr.permissions.has("KICK_MEMBERS")) perm = "YES";
         if (await mmbr.permissions.has("BAN_MEMBERS")) perm = "YES";
-        if (mmbr.id == (await CONFIG.CONFIG("OWNER"))) perm = "YES";
+        if (mmbr.id == (CONFIG.CONFIG.OWNER)) perm = "YES";
         break;
       case "3": //Ban permissions
         if (await mmbr.permissions.has("BAN_MEMBERS")) perm = "YES";
-        if (mmbr.id == (await CONFIG.CONFIG("OWNER"))) perm = "YES";
+        if (mmbr.id == (CONFIG.CONFIG.OWNER)) perm = "YES";
         break;
       case "4": //Bot Owner
-        if (mmbr.id == (await CONFIG.CONFIG("OWNER"))) perm = "YES";
+        if (mmbr.id == (CONFIG.CONFIG.OWNER)) perm = "YES";
         break;
       default:
         perm = "NO";
