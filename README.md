@@ -16,7 +16,7 @@ _For example purposes the prefix used for bot commands in this file are `!`_
 - Moderation commands
 - Custom Commands
 
-## Table_of_Contents
+## Table of Contents
 
 * [Table of contents](#Table_of_Contents)
    * [First Use](#First_Use)
@@ -33,12 +33,12 @@ _For example purposes the prefix used for bot commands in this file are `!`_
       * [Setting the Reaction Roles](#Setting_the_Reaction_Roles)
     * [Commands](#Commands)
 
-## First_Use
-### Adding_the_bot
+## First Use
+### Adding the bot
 To add the bot you can go to Artemis's [website](https://artemis.rest) or follow the [direct invite](https://discord.gg/Y6f3XQyuTQ)
 It is important to give Artemis proper permissions(*administrative*) and a high spot in the role hierachy to ensure most functions work properly.
 
-### Permissions_overview
+### Permissions overview
 _For Artemis itself the best option is to give her Administration permissions and a high spot in the role hierachy._
 
 You might have noticed that there are permision levels in the command tree, this is basically what rights users have to use these commands, I have made a difference between Regular users, Helpers, Moderators and Administrators.
@@ -61,7 +61,7 @@ I will now explain the permission system:
 
 To give a user all rights to use all commands with exception of level 4 give the users all 3 relevant permissions in their role.
 
-### Setting_up_the_channels
+### Setting up the channels
 Within a channel use the command `!setup --setup=channels`
 This will give you a step by step initialization of the channels.
 
@@ -73,7 +73,7 @@ This will give you a step by step initialization of the channels.
 - Stream Notification channel is where streams from twitch will show up, you have to add streamers to your own list to let them pop up.
 - Logs channel is where the enabled logs go.
 
-### Setting_up_the_settings
+### Setting up the settings
 Within a channel use the command `!setup --setup=settings`
 
 - Stream (at)here pings: if this option is `ON` then streams that go online will be pushed out with an @here notification.
@@ -86,21 +86,21 @@ Within a channel use the command `!setup --setup=settings`
 - Bot responses: When a sentence starts with `artemis` the bot will parse it and use cleverbot to give a reply. when this setting is `ON` it will do that.
 - Welcoming message: Users who join the server will receive a DM from your server to notify they joined it, you can supply extra text such as information about what channels they should use etc.
 
-### Setting_up_the_logs
+### Setting up the logs
 Within a channel use the command `!setup --setup=logs`
 This command will give you a step by step walktrough of which Logs are supposed to be `ON` and which one should be `OFF`
 
-### Setting_up_the_levels
+### Setting up the levels
 Within a channel use the command `!setup --setup=levels`
 When this command is used it will ask you if you want to create or remove a level-up.
 When you pick `create` it will give you a small step by step walktrough of which level and which role should be attached to each other.
 When you pick `remove` the command will ask you to provide the level which has to be untied from a role.
 
-### Setting_up_a_support_channel
+### Setting up a support channel
 Within a channel use the command `!setup --setup=support`
 when this command is used it will ask you to mention a channel, this channel will be the core channel where support sessions are used, you will also be asked if there is something like a guru/scholar/know-it-all role and if there is you are allowed to mention the role or their role ID so that when a support ticket is opened the role gets pinged.
 
-### Brief_overview_of_moderation_commands
+### Brief overview of moderation commands
 The following commands will create an admin case, these cases can be reviewed, edited and invalidated:
 - mute
 - kick
@@ -109,15 +109,15 @@ The following commands will create an admin case, these cases can be reviewed, e
 
 When these commands are used Artemis will also try to DM the user in question to inform them about the moderation action taken against them.
 
-## Advanced_Use
-### Adding_streamers
+## Advanced Use
+### Adding streamers
 By using the command `!streamer StreamerName` the streamername will be added to your personal guild database.
 By using the same command again you can remove the streamer from your list.
 When adding a streamer it will first check if it's a valid streamer, if not it will return an error which is completely fine.
 
 When a streamer is on your list Artemis will regulary check if the streamer is online, if they are then Artemis will send a notification to the stream notification channel.
 
-### Setting_the_Reaction_Roles
+### Setting the Reaction Roles
 This is probably what you were looking for right?
 Alright let's try to make this as easy to explain as possible.
 
